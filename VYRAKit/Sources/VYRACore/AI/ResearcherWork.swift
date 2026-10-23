@@ -25,7 +25,7 @@ public final class WorkCheckpoint {
     public func save() {
         let o = Json.obj(("format", "vyra-work-1"), ("title", title), ("outline", outline as [Any]), ("head", head), ("doc", doc), ("done", Double(done)), ("fmt", format), ("task", task),
                          ("sources", sources.map { Json.obj(("id", Double($0.id)), ("title", $0.title), ("url", $0.url)) as Any }))
-        try? FS.writeAtomic(path, text: Json.serialize(o))
+        try? FS.writeAtomic(path, text: Json.serialize(o)) // legt den Ordner bei Bedarf an
     }
     public func delete() { FS.delete(path) }
 }

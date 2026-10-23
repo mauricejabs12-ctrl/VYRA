@@ -1,0 +1,1245 @@
+﻿[
+  {
+    "id": "w01",
+    "category": "Windows",
+    "title": "Windows-Spielmodus aktivieren",
+    "description": "Gibt dem Spiel bei konkurrierender Hintergrundlast mehr Priorität.",
+    "steps": [
+      "VYRA sichert den bisherigen Registry-Wert und aktiviert den Windows-Spielmodus.",
+      "Danach Windows-Einstellungen > Spielen > Spielmodus kontrollieren."
+    ],
+    "impact": "Empfohlen",
+    "kind": "registry",
+    "note": "",
+    "source": "https://learn.microsoft.com/en-us/windows/apps/develop/settings/settings-windows-11",
+    "recommended": true,
+    "changes": [
+      {
+        "path": "HKCU:\\Software\\Microsoft\\GameBar",
+        "name": "AutoGameModeEnabled",
+        "value": 1,
+        "type": "DWord"
+      }
+    ],
+    "free": true,
+    "restart": true
+  },
+  {
+    "id": "w02",
+    "category": "Windows",
+    "title": "Hintergrundaufzeichnung ausschalten",
+    "description": "Verhindert laufende Videomitschnitte durch Windows und entlastet CPU und Datenträger.",
+    "steps": [
+      "Die Windows-Spielaufzeichnung wird für diesen Benutzer ausgeschaltet.",
+      "Game Bar bleibt installiert. Bereits gespeicherte Clips bleiben erhalten."
+    ],
+    "impact": "Empfohlen",
+    "kind": "registry",
+    "note": "Clips über Windows können anschließend nicht wie zuvor aufgenommen werden. Abmelden kann nötig sein.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": true,
+    "changes": [
+      {
+        "path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\GameDVR",
+        "name": "AppCaptureEnabled",
+        "value": 0,
+        "type": "DWord"
+      },
+      {
+        "path": "HKCU:\\System\\GameConfigStore",
+        "name": "GameDVR_Enabled",
+        "value": 0,
+        "type": "DWord"
+      }
+    ],
+    "free": true,
+    "restart": true
+  },
+  {
+    "id": "w03",
+    "category": "Windows",
+    "title": "Transparenzeffekte reduzieren",
+    "description": "Verringert die grafischen Effekte der Windows-Oberfläche; meist kleiner Einfluss aufs Spiel.",
+    "steps": [
+      "VYRA schaltet die Transparenz der Oberfläche ab.",
+      "Nach erneutem Anmelden wird die Änderung vollständig sichtbar."
+    ],
+    "impact": "Situativ",
+    "kind": "registry",
+    "note": "",
+    "source": "https://learn.microsoft.com/en-us/windows/apps/develop/settings/settings-common",
+    "recommended": false,
+    "changes": [
+      {
+        "path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+        "name": "EnableTransparency",
+        "value": 0,
+        "type": "DWord"
+      }
+    ],
+    "free": true,
+    "restart": true
+  },
+  {
+    "id": "w04",
+    "category": "Windows",
+    "title": "Fensteranimationen abschalten",
+    "description": "Fenster werden ohne Minimieranimation angezeigt. Das macht die Bedienung direkter.",
+    "steps": [
+      "VYRA deaktiviert die Animation beim Minimieren und Maximieren.",
+      "Abmelden und wieder anmelden."
+    ],
+    "impact": "Situativ",
+    "kind": "registry",
+    "note": "Eine schnellere Oberfläche bedeutet nicht automatisch mehr FPS.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [
+      {
+        "path": "HKCU:\\Control Panel\\Desktop\\WindowMetrics",
+        "name": "MinAnimate",
+        "value": "0",
+        "type": "String"
+      }
+    ],
+    "free": true,
+    "restart": true
+  },
+  {
+    "id": "w05",
+    "category": "Windows",
+    "title": "Taskleistenanimationen ausschalten",
+    "description": "Reduziert Animationen beim Wechseln zwischen Programmen.",
+    "steps": [
+      "VYRA setzt TaskbarAnimations auf 0.",
+      "Nach der nächsten Anmeldung kontrollieren."
+    ],
+    "impact": "Situativ",
+    "kind": "registry",
+    "note": "Geringer Einfluss im Vollbildspiel.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [
+      {
+        "path": "HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+        "name": "TaskbarAnimations",
+        "value": 0,
+        "type": "DWord"
+      }
+    ],
+    "free": true,
+    "restart": true
+  },
+  {
+    "id": "w06",
+    "category": "Windows",
+    "title": "Game-Bar-Start per Controller aus",
+    "description": "Verhindert ein unbeabsichtigtes Öffnen des Overlays mit der Controller-Taste.",
+    "steps": [
+      "VYRA deaktiviert nur das Öffnen der Game Bar über die Controller-Taste."
+    ],
+    "impact": "Situativ",
+    "kind": "registry",
+    "note": "",
+    "source": "https://learn.microsoft.com/en-us/windows/apps/develop/settings/settings-windows-11",
+    "recommended": false,
+    "changes": [
+      {
+        "path": "HKCU:\\Software\\Microsoft\\GameBar",
+        "name": "UseNexusForGameBarEnabled",
+        "value": 0,
+        "type": "DWord"
+      }
+    ],
+    "free": true,
+    "restart": true
+  },
+  {
+    "id": "w07",
+    "category": "Windows",
+    "title": "Energieplan Höchstleistung testen",
+    "description": "Kann auf diesem Desktop die Reaktionszeit bei Lastwechseln verbessern.",
+    "steps": [
+      "VYRA speichert die GUID des aktuellen Energieplans.",
+      "Der vorhandene Plan Höchstleistung wird aktiviert. Falls er fehlt, bleibt alles unverändert.",
+      "FPS, Frametimes und Temperaturen mit dem bisherigen Plan vergleichen."
+    ],
+    "impact": "Situativ",
+    "kind": "power",
+    "note": "Mehr Stromverbrauch und Wärme möglich. Bei fehlendem Vorteil den gesicherten Plan wiederherstellen.",
+    "source": "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "w08",
+    "category": "Windows",
+    "title": "Visuelle Effekte gezielt reduzieren",
+    "description": "Entlastet den Desktop bei vielen offenen Fenstern.",
+    "steps": [
+      "Win + R > SystemPropertiesPerformance.exe.",
+      "Benutzerdefiniert wählen. Unnötige Animationen deaktivieren.",
+      "Kantenglättung der Bildschirmschrift für gute Lesbarkeit beibehalten."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "w09",
+    "category": "Windows",
+    "title": "Fortnite der GTX 1050 Ti zuordnen",
+    "description": "Verhindert die Nutzung der integrierten Intel-Grafik, falls Windows beide GPUs anbietet.",
+    "steps": [
+      "Einstellungen > System > Anzeige > Grafik öffnen.",
+      "FortniteClient-Win64-Shipping.exe hinzufügen.",
+      "Optionen > Hohe Leistung > NVIDIA-GPU wählen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "Nur relevant, wenn mehrere GPUs verfügbar sind.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "w10",
+    "category": "Windows",
+    "title": "Fensterspiel-Optimierungen vergleichen",
+    "description": "Kann unter Windows 11 die Darstellung im Fenstermodus verbessern.",
+    "steps": [
+      "Nur Windows 11: Einstellungen > System > Anzeige > Grafik > Standardeinstellungen.",
+      "Optimierungen für Fensterspiele an/aus mit derselben Spielszene vergleichen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Versions- und Rendering-abhängig. Kein pauschaler Eingriff in Vollbild-Registrywerte.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f01",
+    "category": "Fortnite",
+    "title": "Performance-Modus verwenden",
+    "description": "Senkt die Renderlast und passt besonders gut zu deiner älteren GPU.",
+    "steps": [
+      "Fortnite > Einstellungen > Video > Rendering-Modus > Performance.",
+      "Spiel vollständig neu starten und mehrere Runden testen."
+    ],
+    "impact": "Hohe Priorität",
+    "kind": "guide",
+    "note": "Der aktuelle Performance-Modus kann DX12 verwenden. Menünamen können sich ändern.",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f02",
+    "category": "Fortnite",
+    "title": "Vollbildmodus wählen",
+    "description": "Konzentriert die Darstellung auf das Spiel und kann die Eingabeverzögerung reduzieren.",
+    "steps": [
+      "Video > Fenstermodus > Vollbild.",
+      "Alt-Tab-Verhalten und Frametimes vergleichen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f03",
+    "category": "Fortnite",
+    "title": "Auflösung an die GPU anpassen",
+    "description": "Eine kleinere Ausgabeauflösung reduziert die Pixelarbeit der GTX 1050 Ti.",
+    "steps": [
+      "Mit der nativen Monitorauflösung beginnen.",
+      "Bei GPU-Limit 1600×900 oder 1280×720 testen.",
+      "Unschärfe und FPS in derselben Szene vergleichen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Nur bei GPU-Limit sinnvoll; das Bild wird weniger scharf.",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f04",
+    "category": "Fortnite",
+    "title": "3D-Auflösung schrittweise senken",
+    "description": "Reduziert die interne Renderauflösung, während das Menü scharf bleibt.",
+    "steps": [
+      "Mit 100 % beginnen.",
+      "Bei GPU-Limit in 10-Prozent-Schritten reduzieren, z. B. auf 80 %.",
+      "Die geringste noch gut erkennbare Darstellung wählen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f05",
+    "category": "Fortnite",
+    "title": "Stabiles FPS-Limit finden",
+    "description": "Ein erreichbares Limit kann Lastspitzen und schwankende Frametimes reduzieren.",
+    "steps": [
+      "Gleiche Creative-Szene drei Minuten testen.",
+      "Zum Start 60, 90 oder 120 FPS vergleichen; nur ein stabil erreichbares Limit behalten.",
+      "1%-Lows und Reaktionsgefühl beurteilen. Monitorfrequenz berücksichtigen."
+    ],
+    "impact": "Hohe Priorität",
+    "kind": "guide",
+    "note": "Diese Werte sind Testziele und keine FPS-Prognose. Unbegrenzt mit Reflex kann ebenfalls besser sein.",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f06",
+    "category": "Fortnite",
+    "title": "VSync im Spiel ausschalten",
+    "description": "Kann die durch vertikale Synchronisation entstehende Wartezeit vermeiden.",
+    "steps": [
+      "Video > VSync > Aus.",
+      "Bei sichtbaren Bildrissen die Monitor- und Synchronisationsoptionen bewusst abstimmen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "Tearing möglich. Bei G-SYNC/VRR gelten andere sinnvolle Kombinationen.",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f07",
+    "category": "Fortnite",
+    "title": "NVIDIA Reflex einschalten",
+    "description": "Reduziert die Renderwarteschlange; die GTX 1050 Ti unterstützt Reflex.",
+    "steps": [
+      "Erweiterte Grafik > NVIDIA Reflex Niedrige Latenz > An.",
+      "An + Boost anschließend vergleichen.",
+      "Bei mehr Wärme ohne messbaren Vorteil bei An bleiben."
+    ],
+    "impact": "Hohe Priorität",
+    "kind": "guide",
+    "note": "Nur verfügbar, wenn der aktuelle Spielmodus die Option anbietet. Boost erhöht ggf. Stromverbrauch.",
+    "source": "https://www.nvidia.com/en-us/geforce/news/fortnite-rtx-on-ray-tracing-nvidia-dlss-reflex/",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f08",
+    "category": "Fortnite",
+    "title": "Texturen auf Niedrig setzen",
+    "description": "Schont die 4 GB Grafikspeicher deiner GTX 1050 Ti.",
+    "steps": [
+      "Video > Grafikqualität > Texturen > Niedrig.",
+      "Nachladeruckler und VRAM-Auslastung vergleichen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f09",
+    "category": "Fortnite",
+    "title": "Meshes auf Niedrig setzen",
+    "description": "Reduziert die Geometriedetails im Performance-Modus.",
+    "steps": [
+      "Im Performance-Modus Grafikqualität > Meshes > Niedrig.",
+      "Bauten und Spielersichtbarkeit in Creative prüfen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f10",
+    "category": "Fortnite",
+    "title": "Sichtweite reduzieren",
+    "description": "Verringert die Last für entfernte Weltobjekte.",
+    "steps": [
+      "Ansichtsabstand zunächst Mittel, dann Nah testen.",
+      "Die Variante mit guter Sichtbarkeit und stabilen Frametimes wählen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f11",
+    "category": "Fortnite",
+    "title": "Effektqualität reduzieren",
+    "description": "Entlastet die GPU bei Partikeln und intensiven Spielszenen.",
+    "steps": [
+      "Falls der Rendering-Modus die Option anbietet: Effekte > Niedrig.",
+      "In einer Szene mit Kämpfen testen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f12",
+    "category": "Fortnite",
+    "title": "Schatten deaktivieren",
+    "description": "Spart Renderarbeit für dynamische Schatten.",
+    "steps": [
+      "Schatten > Aus, falls verfügbar.",
+      "Im Performance-Modus können Schatten bereits entfallen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f13",
+    "category": "Fortnite",
+    "title": "Bewegungsunschärfe deaktivieren",
+    "description": "Hält schnelle Bewegungen besser erkennbar.",
+    "steps": [
+      "Video > Bewegungsunschärfe > Aus, falls vorhanden."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Verbessert vor allem Klarheit; kein garantierter messbarer FPS-Gewinn.",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f14",
+    "category": "Fortnite",
+    "title": "Nanite und Lumen vermeiden",
+    "description": "Aufwendige Geometrie und Beleuchtung sind für dieses Leistungsprofil ungeeignet.",
+    "steps": [
+      "Falls DX12 statt Performance genutzt wird: Nanite aus.",
+      "Globale Beleuchtung und Reflexionen auf die geringste verfügbare Stufe."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Im Performance-Modus bereits weitgehend nicht verfügbar.",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f15",
+    "category": "Fortnite",
+    "title": "Replay-Aufzeichnung deaktivieren",
+    "description": "Vermeidet zusätzliche Schreibarbeit auf deiner Hitachi-HDD.",
+    "steps": [
+      "Einstellungen > Spiel > Replays.",
+      "Normale Replays, große Teams und Creative-Replays ausschalten, sofern angeboten."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "Neue Matches werden dann nicht mehr als Replay gespeichert.",
+    "source": "https://www.epicgames.com/help/c-34254770/a26749910",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f16",
+    "category": "Fortnite",
+    "title": "HD-Texturpaket abwählen",
+    "description": "Spart Installationsplatz, wenn du ohnehin niedrige Texturen nutzt.",
+    "steps": [
+      "Fortnite schließen. Epic Games Launcher > Bibliothek > Fortnite > … > Optionen.",
+      "Hochauflösende Texturen abwählen und Übernehmen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Freier Speicherplatz bedeutet nicht automatisch höhere FPS.",
+    "source": "https://www.epicgames.com/help/c-34254770/a26749910",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f17",
+    "category": "Fortnite",
+    "title": "Gestreamte Assets vorab laden",
+    "description": "Kann Nachladen über das Netz reduzieren, benötigt aber zusätzlichen HDD-Platz.",
+    "steps": [
+      "Im Launcher die Fortnite-Installationsoptionen öffnen.",
+      "Falls vorhanden: Gestreamte Assets vorab herunterladen aktivieren.",
+      "Nur bei genügend freiem Speicher verwenden."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Optional: zusätzlicher Download und Speicherbedarf. Erst nach Abschluss spielen.",
+    "source": "https://www.epicgames.com/help/c-34254770/a26749910",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "f18",
+    "category": "Fortnite",
+    "title": "FPS- und Netzwerkstatistik anzeigen",
+    "description": "Macht Ruckler und Verbindungsprobleme bei Vergleichen sichtbar.",
+    "steps": [
+      "Video > FPS anzeigen aktivieren.",
+      "Spiel-UI > Netzwerk-Debug-Statistik aktivieren, sofern verfügbar.",
+      "Werte vor und nach jeder Änderung in derselben Szene notieren."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Messhilfe, keine leistungssteigernde Einstellung für sich.",
+    "source": "https://store.epicgames.com/news/fortnite-on-pc-best-settings-for-competitive-play-in-2026?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g01",
+    "category": "NVIDIA",
+    "title": "Passenden NVIDIA-Treiber prüfen",
+    "description": "Vergleiche deinen installierten Treiber mit einem offiziell unterstützten für die GTX 1050 Ti.",
+    "steps": [
+      "Version im VYRA-Scan ansehen.",
+      "Auf der NVIDIA-Downloadseite GeForce GTX 1050 Ti und dein tatsächliches Windows wählen.",
+      "Nur einen für diese Karte freigegebenen Treiber verwenden."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Pascal erhält seit Oktober 2025 nur noch kritische Sicherheitsupdates bis Oktober 2028. Keine automatischen Treiber-Updater.",
+    "source": "https://www.nvidia.com/Download/index.aspx?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g02",
+    "category": "NVIDIA",
+    "title": "Maximale Leistung nur für Fortnite",
+    "description": "Kann Taktwechsel der GPU im Spiel reduzieren.",
+    "steps": [
+      "NVIDIA-Systemsteuerung > 3D-Einstellungen verwalten > Programmeinstellungen > Fortnite.",
+      "Energieverwaltungsmodus > Maximale Leistung bevorzugen testen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Mehr Wärme/Verbrauch. Globalen Standard beibehalten und bei fehlendem Vorteil zurückstellen.",
+    "source": "https://www.nvidia.com/Download/index.aspx?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g03",
+    "category": "NVIDIA",
+    "title": "Doppelte VSync-Vorgaben vermeiden",
+    "description": "Hält Synchronisationsverhalten nachvollziehbar.",
+    "steps": [
+      "Fortnite-Profil in der NVIDIA-Systemsteuerung öffnen.",
+      "Für einen Test ohne Synchronisation VSync nicht vom Treiber erzwingen.",
+      "Spiel-VSync und VRR-Konfiguration zusammen betrachten."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Keine pauschale Empfehlung für alle G-SYNC-Monitore.",
+    "source": "https://www.nvidia.com/Download/index.aspx?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g04",
+    "category": "NVIDIA",
+    "title": "Nur einen FPS-Begrenzer verwenden",
+    "description": "Vermeidet mehrere gleichzeitig aktive Limitierungen.",
+    "steps": [
+      "Für einen Vergleich den Fortnite-internen Begrenzer nutzen.",
+      "Zusätzliche Limits in Treiber oder Drittprogrammen für diesen Test deaktivieren."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://www.nvidia.com/Download/index.aspx?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g05",
+    "category": "NVIDIA",
+    "title": "Reflex statt Treiber-Ultra testen",
+    "description": "Fortnite kann die Warteschlange direkt über Reflex steuern.",
+    "steps": [
+      "Wenn Reflex aktiv ist, Treiber-Modus für geringe Latenz zunächst auf Standard/Aus lassen.",
+      "Nicht mehrere Latenz-Tweaks gleichzeitig verändern."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Die Wirkung des Treibermodus hängt von der Grafik-API ab.",
+    "source": "https://www.nvidia.com/en-us/geforce/news/fortnite-rtx-on-ray-tracing-nvidia-dlss-reflex/",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g06",
+    "category": "NVIDIA",
+    "title": "Shader-Cache behalten",
+    "description": "Vermeidet unnötiges erneutes Kompilieren nach jeder Bereinigung.",
+    "steps": [
+      "Shader-Cache im Treiber nicht pauschal deaktivieren.",
+      "VYRA lässt NVIDIA- und DirectX-Shader-Caches bei der Bereinigung aus."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Nach einem Treiberwechsel können erste Runden trotzdem ruckeln.",
+    "source": "https://www.nvidia.com/Download/index.aspx?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g07",
+    "category": "NVIDIA",
+    "title": "Nicht benötigtes NVIDIA-Overlay aus",
+    "description": "Vermeidet Overlay- und Aufnahmeaktivität im Spiel.",
+    "steps": [
+      "Falls NVIDIA App/GeForce Experience installiert ist: Einstellungen öffnen.",
+      "In-Game-Overlay und Instant Replay deaktivieren, wenn ungenutzt."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://www.nvidia.com/Download/index.aspx?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "g08",
+    "category": "NVIDIA",
+    "title": "Image Scaling bei GPU-Limit prüfen",
+    "description": "Kann niedrigere Ausgabeauflösung mit Nachschärfung kombinieren.",
+    "steps": [
+      "Nur wenn vom Treiber angeboten: NVIDIA Image Scaling im Fortnite-Profil testen.",
+      "Mit reduzierter Auflösung vergleichen und Unschärfe prüfen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Alternative zu geringerer 3D-Auflösung. Hilft bei CPU-Limit kaum und kann Performance-Modus anders beeinflussen.",
+    "source": "https://www.nvidia.com/Download/index.aspx?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "i01",
+    "category": "Eingabe",
+    "title": "Windows-Mausbeschleunigung aus",
+    "description": "Macht Desktopbewegungen linearer. Spiele mit Raw Input umgehen diese Einstellung meist.",
+    "steps": [
+      "VYRA sichert MouseSpeed und beide Beschleunigungsschwellen.",
+      "Die drei Werte werden auf 0 gesetzt. Danach neu anmelden."
+    ],
+    "impact": "Situativ",
+    "kind": "registry",
+    "note": "Verändert das Mausgefühl im Desktop. Kein versprochener Input-Lag-Gewinn in Fortnite.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [
+      {
+        "path": "HKCU:\\Control Panel\\Mouse",
+        "name": "MouseSpeed",
+        "value": "0",
+        "type": "String"
+      },
+      {
+        "path": "HKCU:\\Control Panel\\Mouse",
+        "name": "MouseThreshold1",
+        "value": "0",
+        "type": "String"
+      },
+      {
+        "path": "HKCU:\\Control Panel\\Mouse",
+        "name": "MouseThreshold2",
+        "value": "0",
+        "type": "String"
+      }
+    ],
+    "free": true,
+    "restart": true
+  },
+  {
+    "id": "i02",
+    "category": "Eingabe",
+    "title": "Höchste Monitorfrequenz wählen",
+    "description": "Zeigt neue Bilder häufiger an, sofern Monitor und Kabel das unterstützen.",
+    "steps": [
+      "Einstellungen > Anzeige > Erweiterte Anzeige.",
+      "Höchste stabile Bildwiederholrate wählen.",
+      "Falls nur 60 Hz vorhanden sind, keine höhere Rate erzwingen."
+    ],
+    "impact": "Hohe Priorität",
+    "kind": "guide",
+    "note": "",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "i03",
+    "category": "Eingabe",
+    "title": "Maus per Kabel oder Gaming-Empfänger",
+    "description": "Vermeidet je nach Gerät zusätzliche Bluetooth-Verzögerung.",
+    "steps": [
+      "Vorhandene kabelgebundene Verbindung oder 2,4-GHz-Empfänger verwenden.",
+      "Empfänger nahe an die Maus und entfernt von Störquellen platzieren."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Keine neue Hardware nötig, wenn die vorhandene Verbindung schon stabil ist.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "i04",
+    "category": "Eingabe",
+    "title": "Polling-Rate 500 gegen 1.000 Hz testen",
+    "description": "Findet den Kompromiss aus Mausabfrage und CPU-Last für den i7-4790.",
+    "steps": [
+      "In der offiziellen Maussoftware 1.000 Hz wählen, falls unterstützt.",
+      "Bei Frametimespitzen mit 500 Hz vergleichen.",
+      "Keine 4.000/8.000-Hz-Rate auf diesem System erzwingen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Weniger ist nicht immer langsamer, wenn hohe Raten CPU-Ruckler erzeugen.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "i05",
+    "category": "Eingabe",
+    "title": "Direkten USB-Anschluss nutzen",
+    "description": "Kann Probleme eines überlasteten oder instabilen USB-Hubs vermeiden.",
+    "steps": [
+      "Maus und Tastatur direkt an vorhandene Mainboard-USB-Ports anschließen.",
+      "Einen anderen Port testen, wenn Verbindungsabbrüche auftreten."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "USB-2.0 ist für viele 1.000-Hz-Mäuse ausreichend.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "i06",
+    "category": "Eingabe",
+    "title": "Filtertasten und Shortcuts prüfen",
+    "description": "Verhindert unerwünschte Tastaturfilter oder Dialoge während des Spielens.",
+    "steps": [
+      "Einstellungen > Barrierefreiheit > Tastatur.",
+      "Filtertasten nur ausschalten, wenn du sie nicht benötigst.",
+      "Unbeabsichtigte Tastenkürzel für Einrast-/Filtertasten deaktivieren."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Barrierefreiheitsfunktionen bei Bedarf beibehalten; keine pauschale Abschaltung.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n01",
+    "category": "Netzwerk",
+    "title": "Vorhandenes LAN statt WLAN nutzen",
+    "description": "Kann Funkstörungen und schwankende Paketlaufzeiten vermeiden.",
+    "steps": [
+      "Falls ein vorhandenes Kabel verfügbar ist: PC per Ethernet mit dem Router verbinden.",
+      "Im Spiel Paketverlust und Ping vergleichen."
+    ],
+    "impact": "Hohe Priorität",
+    "kind": "guide",
+    "note": "",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n02",
+    "category": "Netzwerk",
+    "title": "Fortnite-Region mit niedrigstem Ping",
+    "description": "Vermeidet eine unnötig weit entfernte Spielregion.",
+    "steps": [
+      "Fortnite > Einstellungen > Spiel > Matchmaking-Region.",
+      "Auto und die nahe Region anhand der angezeigten Millisekunden vergleichen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n03",
+    "category": "Netzwerk",
+    "title": "Launcher-Downloads pausieren",
+    "description": "Hält Bandbreite und HDD für das Spiel frei.",
+    "steps": [
+      "In Epic, Steam und anderen Launchern laufende Downloads pausieren.",
+      "Updates außerhalb der Spielzeit fertigstellen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n04",
+    "category": "Netzwerk",
+    "title": "Upload-lastige Streams pausieren",
+    "description": "Kann Warteschlangen am Internetanschluss reduzieren.",
+    "steps": [
+      "Aktive Livestreams, große Uploads und Cloud-Backups vor dem Match pausieren.",
+      "Im Spiel Ping unter Last vergleichen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n05",
+    "category": "Netzwerk",
+    "title": "Stabiles 5-GHz-WLAN testen",
+    "description": "Kann bei kurzer Distanz weniger überlastet sein als 2,4 GHz.",
+    "steps": [
+      "Nur wenn Router und Adapter es unterstützen: 5-GHz-Netz verwenden.",
+      "Signalqualität und Paketverlust prüfen; bei schlechterer Reichweite zurückwechseln."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n06",
+    "category": "Netzwerk",
+    "title": "VPN-Verbindung vergleichen",
+    "description": "Ein zusätzlicher Tunnel kann den Weg zum Spielserver verlängern.",
+    "steps": [
+      "Falls für das Spiel kein VPN nötig ist, eine Runde ohne VPN vergleichen.",
+      "Betriebliche oder bewusst benötigte Verbindungen beibehalten."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Der tatsächliche Effekt hängt vom Routing des Anbieters ab.",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n07",
+    "category": "Netzwerk",
+    "title": "Router-SQM bei Bufferbloat prüfen",
+    "description": "Kann Ping-Spitzen bei gleichzeitiger Leitungsauslastung abmildern.",
+    "steps": [
+      "Nur wenn der vorhandene Router SQM/QoS unterstützt: aktuelle Konfiguration sichern.",
+      "Nach Router-Handbuch korrekt für die gemessene Bandbreite konfigurieren.",
+      "Unter parallelem Download testen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Routerzugriff nötig. Kann maximalen Durchsatz reduzieren; kein universeller Ein-Klick-Tweak.",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "n08",
+    "category": "Netzwerk",
+    "title": "Adapter-Energiesparen vergleichen",
+    "description": "Kann bei manchen Adaptern Verzögerungen nach Leerlauf vermeiden.",
+    "steps": [
+      "Geräte-Manager > Netzwerkadapter > Eigenschaften > Energieverwaltung.",
+      "Falls vorhanden: Ausschalten des Geräts zum Energiesparen testweise abwählen.",
+      "Nur bei reproduzierbaren Problemen behalten."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Treiberabhängig. Kein pauschales Ändern von TCP, MTU, DNS oder Nagle.",
+    "source": "https://www.epicgames.com/help/c-34254770/c-37371353/a22355516?lang=de",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d01",
+    "category": "Debloat",
+    "title": "Autostart aufräumen",
+    "description": "Startet weniger ungenutzte Programme und hält Arbeitsspeicher frei.",
+    "steps": [
+      "Task-Manager > Autostart-Apps.",
+      "Nur erkannte, unbenötigte Programme deaktivieren.",
+      "Audiotreiber, Eingabesoftware und Schutzprogramme nach Bedarf beibehalten."
+    ],
+    "impact": "Hohe Priorität",
+    "kind": "guide",
+    "note": "",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d02",
+    "category": "Debloat",
+    "title": "Clipchamp bei Nichtnutzung entfernen",
+    "description": "Gibt Platz für Spiele frei; verändert FPS ohne Hintergrundlast kaum.",
+    "steps": [
+      "VYRA prüft das exakte Clipchamp-Paket für den aktuellen Benutzer.",
+      "Nach Bestätigung wird nur dieses Paket entfernt."
+    ],
+    "impact": "Situativ",
+    "kind": "appx",
+    "note": "App-Daten können verloren gehen. Rückkehr durch Neuinstallation aus dem Microsoft Store, nicht über Registry-Backup.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "package": "Clipchamp.Clipchamp",
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d03",
+    "category": "Debloat",
+    "title": "Solitaire bei Nichtnutzung entfernen",
+    "description": "Entfernt die optionale Spielesammlung für deinen Benutzer.",
+    "steps": [
+      "VYRA prüft das exakte Paket Microsoft.MicrosoftSolitaireCollection.",
+      "Nur nach Bestätigung deinstallieren."
+    ],
+    "impact": "Situativ",
+    "kind": "appx",
+    "note": "Lokale App-Daten können verloren gehen. Bei Bedarf im Microsoft Store neu installieren.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "package": "Microsoft.MicrosoftSolitaireCollection",
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d04",
+    "category": "Debloat",
+    "title": "News-App bei Nichtnutzung entfernen",
+    "description": "Entfernt die optionale Microsoft-News-App für deinen Benutzer.",
+    "steps": [
+      "VYRA prüft das exakte Paket Microsoft.BingNews.",
+      "Nur nach Bestätigung deinstallieren."
+    ],
+    "impact": "Situativ",
+    "kind": "appx",
+    "note": "Nicht auf allen Windows-Versionen vorhanden. Neuinstallation über Microsoft Store; kein Registry-Rollback.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "package": "Microsoft.BingNews",
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d05",
+    "category": "Debloat",
+    "title": "Teams-Autostart deaktivieren",
+    "description": "Verhindert unnötige Kommunikationstools im Hintergrund.",
+    "steps": [
+      "Teams > Einstellungen > Allgemein > Automatisch starten aus.",
+      "Alternativ in Windows > Apps > Autostart deaktivieren."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Wenn Teams benötigt wird, weiterhin manuell starten.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d06",
+    "category": "Debloat",
+    "title": "Discord-Overlay deaktivieren",
+    "description": "Reduziert die Zahl eingeblendeter Overlays.",
+    "steps": [
+      "Discord > Benutzereinstellungen > Spiel-Overlay.",
+      "Overlay global oder nur für Fortnite ausschalten."
+    ],
+    "impact": "Empfohlen",
+    "kind": "guide",
+    "note": "",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d07",
+    "category": "Debloat",
+    "title": "Cloud-Synchronisierung pausieren",
+    "description": "Reduziert während des Matches HDD- und Netzwerkzugriffe.",
+    "steps": [
+      "OneDrive/andere Cloud-App über das Tray öffnen.",
+      "Synchronisierung für die Spielzeit pausieren.",
+      "Danach wieder fortsetzen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Dateien werden dadurch nicht gelöscht.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "d08",
+    "category": "Debloat",
+    "title": "Unbenutzte OEM-Programme entfernen",
+    "description": "Kann Hintergrunddienste und belegten Speicher reduzieren.",
+    "steps": [
+      "Einstellungen > Apps > Installierte Apps.",
+      "Nach Größe oder Installationsdatum sortieren.",
+      "Nur bekannte ungenutzte Testsoftware deinstallieren."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Microsoft Store, Visual C++, .NET, Anti-Cheat und Treiber nicht pauschal entfernen.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "s01",
+    "category": "Speicher",
+    "title": "Alte temporäre Dateien bereinigen",
+    "description": "Entfernt überprüfte Temp-Dateien, die seit mindestens sieben Tagen unverändert sind.",
+    "steps": [
+      "In VYRA > Bereinigung zunächst analysieren.",
+      "Kandidaten und Größe prüfen.",
+      "Endgültiges Löschen ausdrücklich bestätigen."
+    ],
+    "impact": "Empfohlen",
+    "kind": "clean",
+    "note": "Freier Platz ist kein garantierter FPS-Gewinn. Gesperrte Dateien werden übersprungen; kein Undo für gelöschte Dateien.",
+    "source": "https://support.microsoft.com/de-de/windows/freigeben-von-speicherplatz-in-windows-85529ccb-c365-490d-b548-831022bc9b32",
+    "recommended": true,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "s02",
+    "category": "Speicher",
+    "title": "Windows-Speicherempfehlungen prüfen",
+    "description": "Findet zusätzliche große oder temporäre Dateien über Windows.",
+    "steps": [
+      "Einstellungen > System > Speicher > Temporäre Dateien/Bereinigungsempfehlungen.",
+      "Jede Kategorie einzeln prüfen. Downloads nicht ungeprüft auswählen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "",
+    "source": "https://support.microsoft.com/de-de/windows/freigeben-von-speicherplatz-in-windows-85529ccb-c365-490d-b548-831022bc9b32",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "s03",
+    "category": "Speicher",
+    "title": "HDD planmäßig optimieren",
+    "description": "Windows kann Fragmentierung mechanischer Laufwerke reduzieren.",
+    "steps": [
+      "Win + R > dfrgui.exe.",
+      "Laufwerkstyp prüfen und Windows-Zeitplan kontrollieren.",
+      "Auf der HDD analysieren/optimieren, während kein Spiel läuft."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Nie das Spiel parallel belasten. Windows behandelt SSDs anders als HDDs.",
+    "source": "https://support.microsoft.com/de-de/windows/freigeben-von-speicherplatz-in-windows-85529ccb-c365-490d-b548-831022bc9b32",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "s04",
+    "category": "Speicher",
+    "title": "Auslagerungsdatei verwalten lassen",
+    "description": "Vermeidet Speicherengpässe trotz deiner 24 GB RAM.",
+    "steps": [
+      "Win + R > SystemPropertiesAdvanced.exe > Leistung > Erweitert.",
+      "Virtueller Arbeitsspeicher > Automatisch verwalten beibehalten oder wieder aktivieren."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Nicht deaktivieren und keinen festen Fantasiewert setzen.",
+    "source": "https://support.microsoft.com/de-de/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "s05",
+    "category": "Speicher",
+    "title": "Freien HDD-Spielraum schaffen",
+    "description": "Hilft Updates und temporären Dateien bei knappem Speicher.",
+    "steps": [
+      "Im Hardware-Scan den tatsächlich freien Speicher prüfen.",
+      "Ungenutzte Spiele über ihren Launcher entfernen.",
+      "Praktischen Puffer einplanen; kein starrer Prozentwert garantiert Leistung."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Deine 466-GB-HDD kann Lade- und Nachladeruckler begrenzen. Software ersetzt keine SSD.",
+    "source": "https://support.microsoft.com/de-de/windows/freigeben-von-speicherplatz-in-windows-85529ccb-c365-490d-b548-831022bc9b32",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  },
+  {
+    "id": "s06",
+    "category": "Speicher",
+    "title": "Komponentenspeicher über Windows",
+    "description": "Windows entfernt bei Bedarf veraltete Systemkomponenten mit unterstützten Werkzeugen.",
+    "steps": [
+      "Optional als Administrator: Windows-Datenträgerbereinigung öffnen.",
+      "Systemdateien bereinigen und Windows-Update-Bereinigung prüfen.",
+      "Keine Systemordner manuell löschen."
+    ],
+    "impact": "Situativ",
+    "kind": "guide",
+    "note": "Kann länger dauern und ist keine direkte FPS-Optimierung. Kein ResetBase und kein Löschen von WinSxS durch VYRA.",
+    "source": "https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/clean-up-the-winsxs-folder?view=windows-11",
+    "recommended": false,
+    "changes": [],
+    "free": true,
+    "restart": false
+  }
+]

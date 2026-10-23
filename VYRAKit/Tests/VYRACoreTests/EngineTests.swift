@@ -99,3 +99,33 @@ final class UpdateBox: @unchecked Sendable {
     func add(_ s: String) { lock.lock(); items.append(s); lock.unlock() }
     var all: [String] { lock.lock(); defer { lock.unlock() }; return items }
 }
+
+/// Eine echte Chat-Runde ueber den KI-Kern mit dem llama.cpp-Testmodell (Zufallsgewichte: Inhalt ist sinnlos, der Ablauf echt).
+final class AssistantRealModelTests: XCTestCase {
+    func testChatTurnWithRealLlamaEngine() async throws {
+        guard let src = TestEnv.testModel else { throw XCTSkip("Testmodell fehlt") }
+        let paths = TestEnv.paths()
+        let info = TestEnv.testModelInfo()
+        try FS.mkdir(paths.models)
+        try FS.fm.copyItem(atPath: src, toPath: FS.join(paths.models, info.file))
+        let e = LlamaEngine(model: info, paths: paths)
+        e.markVerified()
+        let a = KiAssistant(paths: paths, small: nil, large: e, pro: nil, engineError: nil)
+        a.settings.set("bot.mode", "local"); a.settings.set("work.webmode", "off"); a.settings.setBool("bot.weblearn", false)
+        a.settings.set("bot.style", "short")
+        var view: RecordingView!
+        let th = ChatThread()
+        await a.send("Hallo, wer bist du?", [], in: th) { m in view = RecordingView(m); return view }
+        XCTAssertEqual(view.message.error, "", view.error)
+        XCTAssertFalse(view.message.content.isEmpty)
+        XCTAssertTrue((view.finished ?? "").hasPrefix("VYRA Test"), view.finished ?? "")
+        XCTAssertTrue(e.running)
+        // Zweite Frage nutzt den Zwischenspeicher (gleicher Systemtext)
+        await a.send("Und was kannst du?", [], in: th) { m in view = RecordingView(m); return view }
+        XCTAssertGreaterThan(e.lastReusedTokens, 100)
+        // Entladen nach Pause
+        a.pause(nil)
+        for _ in 0..<50 where e.running { try await Task.sleep(nanoseconds: 50_000_000) }
+        XCTAssertFalse(e.running)
+    }
+}

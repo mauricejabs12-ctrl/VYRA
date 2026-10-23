@@ -31,3 +31,11 @@ extension Platform {
         return p
     }
 }
+
+extension Platform {
+    /// Schnellhilfe: Windows nennt die VYRA-Seite (»→ In VYRA: Seite »FPS-Booster««). Auf dem iPhone gibt es nur die KI;
+    /// alle anderen Seiten gehoeren zur Windows-App und werden so benannt.
+    public static func pagePointer(_ page: String) -> String {
+        page == "VYRA KI" ? "→ In VYRA KI: Einstellungen und Chat." : "→ In der Windows-App VYRA Gaming Hub: Seite »" + page + "«."
+    }
+}

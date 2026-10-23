@@ -44,3 +44,122 @@ public enum Knowledge {
         return r
     }
 }
+
+// ---------------------------------------------------------------- Wissensbasis der Schnellhilfe (aus `Knowledge`: Anleitungen + 64 Massnahmen)
+public final class KnowledgeDoc {
+    public var id = "", title = "", kind = "", page = "", text = ""
+    public var points = [String]()
+    var terms = [String: Int]()
+    var length = 0
+    public init() {}
+}
+public final class KnowledgeHit { public let doc: KnowledgeDoc; public let score: Double; init(_ d: KnowledgeDoc, _ s: Double) { doc = d; score = s } }
+
+public final class KnowledgeBase {
+    var docs = [KnowledgeDoc]()
+    var df = [String: Int]()
+    var avg = 1.0
+    public init() {}
+    public var count: Int { docs.count }
+    /// Laedt Guides.json und Tweaks.json aus dem App-Paket (unveraendert aus der Windows-Ausgabe).
+    public static func bundled() -> KnowledgeBase {
+        let k = KnowledgeBase()
+        if let u = Bundle.module.url(forResource: "Guides", withExtension: "json", subdirectory: "Resources/Wissen") { try? k.loadGuides(u.path) }
+        if let u = Bundle.module.url(forResource: "Tweaks", withExtension: "json", subdirectory: "Resources/Wissen") { try? k.loadTweaks(u.path) }
+        return k
+    }
+    public func add(_ d: KnowledgeDoc) {
+        for t in Knowledge.tokens(d.title + " " + d.title + " " + d.text + " " + d.points.joined(separator: " "), expand: false) { d.terms[t, default: 0] += 1; d.length += 1 }
+        for t in d.terms.keys { df[t, default: 0] += 1 }
+        docs.append(d)
+        avg = docs.reduce(0.0) { $0 + Double(max(1, $1.length)) } / Double(docs.count)
+    }
+    public static func pageForGuide(_ id: String) -> String {
+        switch id {
+        case "automatik", "plan": return "Automatik"
+        case "optimierungen": return "64 Optimierungen"
+        case "scanner": return "PC-Scanner"
+        case "live": return "Live-Monitor"
+        case "hud", "fpsfreigabe": return "Fortnite HUD"
+        case "booster": return "FPS-Booster"
+        case "crosshair", "eigene-crosshairs": return "Crosshair Lab"
+        case "bereinigung": return "Bereinigung"
+        case "backups": return "Backups & Verlauf"
+        case "konto": return "Konto & Einstellungen"
+        case "designs": return "Design Studio"
+        case "browser": return "Webbrowser"
+        case "nova", "vyra-ki": return "VYRA KI"
+        case "systemcheck", "probleme": return "Systemcheck"
+        default: return "Anleitungen"
+        }
+    }
+    public func loadGuides(_ path: String) throws {
+        for g in (try Json.readFile(path, maxBytes: 1_048_576) as? [Any]) ?? [] {
+            let d = KnowledgeDoc()
+            d.id = "guide:" + Json.str(g, "id"); d.title = Json.str(g, "title"); d.kind = "Anleitung"; d.page = KnowledgeBase.pageForGuide(Json.str(g, "id")); d.text = Json.str(g, "intro")
+            for s in Json.arr(g, "steps") { d.points.append(Json.text(s)) }
+            for s in Json.arr(g, "tips") { d.points.append("Tipp: " + Json.text(s)) }
+            if !d.title.isEmpty { add(d) }
+        }
+    }
+    public func loadTweaks(_ path: String) throws {
+        for t in (try Json.readFile(path, maxBytes: 4_194_304) as? [Any]) ?? [] {
+            let d = KnowledgeDoc()
+            d.id = "tweak:" + Json.str(t, "id"); d.title = Json.str(t, "title"); d.kind = "Maßnahme · " + Json.str(t, "category"); d.page = "64 Optimierungen"; d.text = Json.str(t, "description") + " " + Json.str(t, "category")
+            for s in Json.arr(t, "steps") { d.points.append(Json.text(s)) }
+            let note = Json.str(t, "note")
+            if !note.isEmpty { d.points.append("Hinweis: " + note) }
+            if !d.title.isEmpty { add(d) }
+        }
+    }
+    public func search(_ query: String, _ take: Int) -> [KnowledgeHit] {
+        var q = [String]()
+        for t in Knowledge.tokens(query, expand: true) where !q.contains(t) { q.append(t) }
+        var hits = [KnowledgeHit]()
+        if q.isEmpty || docs.isEmpty { return hits }
+        let n = Double(docs.count)
+        for d in docs {
+            var score = 0.0
+            for t in q {
+                guard let f = d.terms[t] else { continue }
+                let c = Double(df[t] ?? 0)
+                let idf = log(1 + (n - c + 0.5) / (c + 0.5))
+                score += idf * (Double(f) * 2.2) / (Double(f) + 1.2 * (0.25 + 0.75 * Double(d.length) / avg))
+            }
+            let nt = Knowledge.norm(d.title)
+            for t in q where t.len >= 4 && nt.contains(t) { score += 1.5 }
+            if score > 0 { hits.append(KnowledgeHit(d, score)) }
+        }
+        return Array(hits.stableSorted { $0.score > $1.score }.prefix(take))
+    }
+    /// Antwort ohne Sprachmodell: kurze, ehrliche Zusammenfassung der passenden Anleitungen.
+    public func answer(_ question: String) -> String {
+        let q = Knowledge.norm(question).trimmed
+        if q.isEmpty { return "Stell mir eine Frage zu VYRA, Fortnite-Leistung, HUD, Crosshairs, Browser oder Designs." }
+        if Rx.isMatch(q, "^(hallo|hi|hey|moin|servus|guten (morgen|tag|abend))( (nova|vyra bot|vyrabot))?$") { return "Hallo! Ich bin VYRA Bot. Frag mich zum Beispiel: »Wie aktiviere ich den FPS-Booster?« oder »Warum ruckelt Fortnite?«" }
+        if Rx.isMatch(q, "^(danke|dankeschoen|vielen dank|thx|merci)") { return "Gern geschehen! Viel Erfolg im nächsten Match." }
+        if q.contains("wer bist du") || q.contains("was bist du") || q.contains("was kannst du") { return "Ich bin VYRA Bot, der Assistent in VYRA. Im Schnellhilfe-Modus suche ich passende Antworten in den VYRA-Anleitungen und den 64 Maßnahmen – sofort und offline. Mit dem optionalen KI-Modell kann ich zusätzlich frei formulierte Antworten schreiben." }
+        let hits = search(question, 3)
+        if hits.isEmpty || hits[0].score < 1.2 { return "Dazu habe ich in den VYRA-Anleitungen nichts Passendes gefunden. Versuche es mit anderen Stichworten (zum Beispiel »FPS«, »Ruckeln«, »HUD«, »Crosshair«, »Browser«). Für allgemeine Fragen (Lernen, Programmieren, Schreiben, Recherche) oben »VYRA KI« wählen – die eigene KI ohne Schlüssel – oder »OpenAI« bzw. »Claude« mit deinem API-Schlüssel." }
+        let top = hits[0].doc
+        var b = top.title + " (" + top.kind + ")\n"
+        if !top.text.trimmed.isEmpty { b += top.text.trimmed + "\n" }
+        var i = 1
+        for p in top.points.prefix(6) { if p.hasPrefix("Tipp:") || p.hasPrefix("Hinweis:") { b += "• " } else { b += "\(i). "; i += 1 }; b += p + "\n" }
+        b += Platform.pagePointer(top.page)
+        let more = hits.dropFirst().filter { $0.score >= hits[0].score * 0.45 }.map { $0.doc.title }
+        if !more.isEmpty { b += "\n\nAuch passend: " + more.joined(separator: " · ") + "." }
+        return b
+    }
+    public func context(_ question: String, _ maxChars: Int) -> String {
+        var b = ""
+        for h in search(question, 3) {
+            if h.score < 1 { continue }
+            var part = "[" + h.doc.title + " – Seite " + h.doc.page + "] " + h.doc.text.trimmed
+            for p in h.doc.points.prefix(5) { part += " | " + p }
+            if b.len + part.len > maxChars { break }
+            b += part + "\n"
+        }
+        return b
+    }
+}

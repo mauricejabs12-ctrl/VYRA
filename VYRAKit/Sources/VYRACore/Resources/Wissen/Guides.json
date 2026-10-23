@@ -1,0 +1,517 @@
+﻿[
+  {
+    "id": "start",
+    "title": "Erster Start",
+    "intro": "So richtest du VYRA in fünf Minuten ein.",
+    "steps": [
+      "ZIP vollständig in einen neuen, leeren Ordner entpacken. Nicht direkt aus der ZIP starten.",
+      "Empfohlen: INSTALLIEREN.cmd doppelklicken – VYRA wird als PC-Anwendung installiert (Anleitung „Als PC-Anwendung installieren“). Alternativ ohne Installation: START-VYRA.cmd.",
+      "Beim ersten Start ein Konto anlegen, damit deine Einstellungen gespeichert werden (oder als Gast weiterspielen).",
+      "Einmal „Hardware scannen“ wählen, damit Empfehlungen zu deinem PC passen.",
+      "Weiter mit der Anleitung „Automatik“."
+    ],
+    "tips": [
+      "Kein Administratorstart nötig. Windows fragt nur bei Funktionen nach, die es wirklich brauchen.",
+      "Beim allerersten Mal PRUEFEN.cmd ausführen: Es testet die App auf deinem PC, ohne etwas zu ändern."
+    ]
+  },
+  {
+    "id": "installation",
+    "title": "Als PC-Anwendung installieren",
+    "intro": "So wird VYRA ein normales Windows-Programm mit eigener VYRA.exe, Startmenü-Eintrag und Deinstallation.",
+    "steps": [
+      "ZIP vollständig in einen neuen Ordner entpacken.",
+      "INSTALLIEREN.cmd doppelklicken (oder in VYRA auf der Übersicht „Jetzt installieren …“).",
+      "Im Installationsfenster wählen, ob ein Desktop-Symbol angelegt werden soll, und „Installieren“ klicken. Administratorrechte sind nicht nötig.",
+      "Fertig: VYRA steht im Startmenü, auf dem Desktop und unter Windows-Einstellungen → Apps → Installierte Apps.",
+      "Ab jetzt VYRA über das Startmenü oder das Desktop-Symbol starten. Den entpackten Ordner kannst du löschen.",
+      "Optional: Rechtsklick auf VYRA im Startmenü → „An Taskleiste anheften“."
+    ],
+    "tips": [
+      "Update: neue Version entpacken und wieder INSTALLIEREN.cmd ausführen – Konten, Einstellungen und Backups bleiben erhalten.",
+      "Deinstallieren: Windows-Einstellungen → Apps → VYRA Gaming Hub → Deinstallieren. Du wirst gefragt, ob deine Daten bleiben sollen.",
+      "Falls ein Virenscanner die neu erstellte VYRA.exe blockiert, startet VYRA weiter über START-VYRA.cmd im Programmordner."
+    ]
+  },
+  {
+    "id": "automatik",
+    "title": "Automatik: PC und Fortnite optimieren",
+    "intro": "Die Automatik setzt unterstützte Windows-Einstellungen und vorhandene Fortnite-Grafikwerte in einem Durchgang – mit Sicherung.",
+    "steps": [
+      "Fortnite und den Epic Games Launcher vollständig schließen.",
+      "Links „Automatik“ öffnen.",
+      "Auswahl prüfen: „Windows-Spielprofil“ und „Fortnite-Konfiguration“ sind empfohlen. Höchstleistung und Maus sind optional.",
+      "FPS-Ziel wählen (die Empfehlung passt zu deinem Monitor), 3D-Auflösung (80 % ist ein guter Start) und Anzeigemodus (für das HUD: „Vollbild im Fenster“).",
+      "„1 System prüfen“ klicken. Es wird noch nichts verändert – du siehst jede geplante Änderung.",
+      "„2 Automatisch optimieren“ klicken und bestätigen.",
+      "Im Ergebnis steht, was angewendet wurde und ob du dich neu anmelden musst (siehe Anleitung „Nach der Automatik“)."
+    ],
+    "tips": [
+      "Alles Rücknehmbare lässt sich im Ergebnis mit einem Klick zurücksetzen.",
+      "Temp-Bereinigung und App-Entfernung sind endgültig und deshalb anfangs aus."
+    ]
+  },
+  {
+    "id": "neustart",
+    "title": "Nach der Automatik: neu anmelden?",
+    "intro": "Manche Windows-Einstellungen wirken erst nach dem Ab- und Anmelden. VYRA sagt dir nach jedem Lauf genau, ob das nötig ist.",
+    "steps": [
+      "Nach dem Lauf erscheint eine Meldung: „Neu anmelden nötig“ oder „Kein Neustart nötig“.",
+      "Wenn nötig: offene Arbeit speichern und „Jetzt abmelden …“ wählen (oder später über Start → Konto → Abmelden).",
+      "Wieder anmelden und VYRA starten. Der Hinweis auf der Übersicht verschwindet automatisch.",
+      "Fortnite-Änderungen gelten beim nächsten Fortnite-Start – dafür ist kein Neustart nötig.",
+      "Ein kompletter PC-Neustart ist nicht nötig, Abmelden reicht."
+    ],
+    "tips": [
+      "Betroffen sind z. B. Animationen, Transparenz, Spielmodus, Aufzeichnung und Mausbeschleunigung.",
+      "Der Energieplan wirkt sofort."
+    ]
+  },
+  {
+    "id": "optimierungen",
+    "title": "64 Optimierungen einzeln nutzen",
+    "intro": "Jede Maßnahme hat eine eigene Schritt-für-Schritt-Anleitung.",
+    "steps": [
+      "Links „64 Optimierungen“ öffnen.",
+      "Mit Suche oder Kategorie filtern (Windows, Fortnite, NVIDIA, Eingabe, Netzwerk, Debloat, Speicher).",
+      "„Details und Schritte“ öffnen: Oben steht der aktuelle Status, darunter die Anleitung.",
+      "„LOKAL AUSFÜHRBAR“: mit „Sichern und anwenden“ setzt VYRA den Wert selbst und sichert vorher das Original.",
+      "„ANLEITUNG“: die Schritte selbst in Windows, Fortnite oder der NVIDIA-Systemsteuerung durchführen.",
+      "„Offizielle Quelle öffnen“ zeigt die Herstellerseite zur Maßnahme."
+    ],
+    "tips": [
+      "Nach Registry-Änderungen einmal ab- und anmelden.",
+      "Rückgängig machen: „Backups & Verlauf“."
+    ]
+  },
+  {
+    "id": "plan",
+    "title": "Mein Plan",
+    "intro": "Merke dir Maßnahmen, die du nacheinander erledigen willst.",
+    "steps": [
+      "Bei einer Maßnahme „Zum Plan“ klicken.",
+      "Filter „Mein Plan“ zeigt nur deine Auswahl.",
+      "„Plan exportieren …“ speichert die Liste als Datei, „Plan importieren …“ lädt sie wieder."
+    ],
+    "tips": [
+      "Der Plan wird automatisch gespeichert und beim nächsten Start geladen.",
+      "Ein Plan wendet nie etwas automatisch an."
+    ]
+  },
+  {
+    "id": "scanner",
+    "title": "PC-Scanner",
+    "intro": "Liest deine Hardware aus Windows aus – ohne Seriennummern oder MAC-Adressen.",
+    "steps": [
+      "Links „PC-Scanner“ öffnen und „Hardware neu scannen“ klicken.",
+      "Ergebnis prüfen: CPU, RAM-Module, Grafikkarte mit Auflösung und Hz, Laufwerke (SSD/HDD), freier Speicher.",
+      "Unter „Hinweise aus deinem Scan“ stehen konkrete Tipps, z. B. zu HDD, RAM oder Monitorfrequenz.",
+      "Optional „Scan-Bericht speichern …“.",
+      "Im Spielberater aus 33 Spielen wählen, Ziel, Auflösung und FPS-Ziel einstellen. Alternativ eigene CPU/GPU/RAM vergleichen. Empfehlungen sind Startwerte, keine gemessenen FPS."
+    ],
+    "tips": [
+      "Der letzte Scan wird beim nächsten Start automatisch geladen.",
+      "NUR-SCANNEN.cmd erstellt den Bericht ohne die App zu öffnen."
+    ]
+  },
+  {
+    "id": "live",
+    "title": "Live-Monitor",
+    "intro": "Zeigt die Auslastung deines PCs in Echtzeit – auch ohne Fortnite.",
+    "steps": [
+      "Links „Live-Monitor“ öffnen. Die Werte erscheinen nach ein bis zwei Sekunden.",
+      "„Spitze seit Öffnen“ zeigt den höchsten Wert, z. B. die maximale GPU-Temperatur.",
+      "Für FPS-Werte das HUD starten (Fortnite HUD → „HUD und Crosshair starten“).",
+      "„Spitzenwerte zurücksetzen“ für eine neue Messung."
+    ],
+    "tips": [
+      "Die Messung stoppt, sobald du die Seite verlässt.",
+      "GPU-Werte gibt es nur mit NVIDIA-Grafikkarte."
+    ]
+  },
+  {
+    "id": "hud",
+    "title": "Fortnite-HUD",
+    "intro": "Blendet FPS, 1 % Low, Frametime, GPU, VRAM, CPU, RAM und Ping über Fortnite ein.",
+    "steps": [
+      "In Fortnite: Einstellungen → Video → Fenstermodus „Vollbild im Fenster“ (die Automatik kann das setzen).",
+      "In VYRA: „Fortnite HUD“ → „HUD und Crosshair starten“.",
+      "Zu Fortnite wechseln. Das HUD erscheint, sobald Fortnite im Vordergrund ist.",
+      "Strg+Alt+H blendet das HUD ein/aus, Strg+Alt+C das Crosshair, Strg+Alt+B schaltet den FPS-Booster.",
+      "Fehlen die FPS? Unten im HUD steht der Grund. Meist: Anleitung „FPS-Messung freigeben“.",
+      "Position links/rechts im HUD-Studio wechseln."
+    ],
+    "tips": [
+      "VYRA darf minimiert sein, muss aber geöffnet bleiben.",
+      "Ping ist ein Internet-Test zu 1.1.1.1, nicht der Fortnite-Server-Ping. Den echten Match-Ping zeigt Fortnite unter Einstellungen → Spiel-UI → Netzwerk-Debug-Statistiken.",
+      "Exklusives Vollbild verdeckt das HUD."
+    ]
+  },
+  {
+    "id": "fpsfreigabe",
+    "title": "FPS-Messung freigeben",
+    "intro": "Windows erlaubt die FPS-Messung (ETW) nur Administratoren oder der Gruppe „Leistungsprotokollbenutzer“.",
+    "steps": [
+      "Empfohlen, einmalig: „Fortnite HUD“ → „Dauerhaft freischalten …“ → bestätigen.",
+      "Windows fragt nach Administratorrechten → „Ja“.",
+      "Von Windows ab- und wieder anmelden. Danach misst VYRA FPS ohne weitere Abfrage.",
+      "Alternative für eine Sitzung: „Einmalig: FPS-Systemmessung freigeben …“ (fragt bei jedem Start)."
+    ],
+    "tips": [
+      "Rückgängig: „Dauerhafte Freigabe entfernen …“.",
+      "Die Freigabe muss für dasselbe Windows-Konto gelten, mit dem du spielst."
+    ]
+  },
+  {
+    "id": "booster",
+    "title": "FPS-Booster",
+    "intro": "Gibt Fortnite mehr CPU-Zeit, solange du spielst – und setzt danach alles zurück.",
+    "steps": [
+      "VYRA öffnen und „Fortnite HUD“ → „HUD und Crosshair starten“ (für Tastenkürzel und Messung).",
+      "Fortnite starten und ins Spiel bzw. in die Lobby gehen.",
+      "Strg+Alt+B drücken. Oben rechts im HUD erscheint „⚡ BOOST AN“.",
+      "20 Sekunden normal weiterspielen: Dann zeigt das HUD „Ø vorher … FPS → mit Booster … FPS“.",
+      "Zum Ausschalten wieder Strg+Alt+B. Beim Beenden von Fortnite schaltet sich der Booster selbst ab.",
+      "Ohne Tastenkürzel: in VYRA links „FPS-Booster“ → „Booster einschalten“.",
+      "Optional: „Automatisch einschalten, sobald Fortnite läuft“.",
+      "„Engpass prüfen“ zeigt, ob gerade CPU oder Grafikkarte bremst.",
+      "Weitere Schalter: „Smart drosseln“, „Spielmodus an, Hintergrundaufnahme aus“ und „Fortnite auf die starke Grafikkarte legen“."
+    ],
+    "tips": [
+      "Was passiert: Fortnite-Priorität „Hoch“, Hintergrund-Apps „Niedriger als normal“, Energieplan Höchstleistung.",
+      "Hilft am meisten bei Rucklern durch CPU-Last oder Hintergrundprogramme. Ist die GPU bei ~99 %, lieber Grafik oder 3D-Auflösung senken.",
+      "Smart drosseln trifft nur Programme, die wirklich bremsen; neue Hintergrund-Prozesse werden alle 20 Sekunden nachgedrosselt.",
+      "Spielmodus und Grafikvorgabe ändern nur Einträge in deinem Benutzerkonto und werden beim Ausschalten zurückgesetzt; manches wirkt erst beim nächsten Spielstart.",
+      "Fortnite selbst wird nicht verändert; es werden nur Windows-Einstellungen genutzt."
+    ]
+  },
+  {
+    "id": "crosshair",
+    "title": "Crosshair Lab",
+    "intro": "1.000 Crosshairs und bis zu zehn getrennte Inventar-Slots über deinem gewählten Spiel.",
+    "steps": [
+      "Links „Crosshair Lab“ öffnen.",
+      "Ein Preset anklicken (Suche nach ID oder Form, Filter, „Nur Favoriten“).",
+      "Farbe wählen oder eigene Farbe als #RRGGBB eingeben und „Eigene Farbe“ klicken.",
+      "Linienstärke, Größe, Deckkraft und Versatz mit den Reglern anpassen.",
+      "„Im Spiel verwenden“ klicken und zu Fortnite wechseln (Vollbild im Fenster).",
+      "Strg+Alt+C blendet das Crosshair im Spiel ein/aus.",
+      "Unter Ein Crosshair pro Inventar-Slot das Spiel und deine Slot-Tasten einstellen. Crosshair anpassen und je Slot Aktuelles Crosshair zuweisen klicken.",
+      "Slot-Wechsel aktivieren. Im Spiel einen Slot per Taste wählen; nach Tab, Esc oder Fokuswechsel erneut wählen."
+    ],
+    "tips": [
+      "Einstellungen speichern sich automatisch.",
+      "„Profil exportieren“ zum Teilen, „Darstellung zurücksetzen“ für die Standardwerte.",
+      "Erkannt werden Slot-Tastendrücke, keine Waffen oder Inventar-Inhalte. Mausrad und automatische Wechsel sind nicht zuverlässig zugeordnet.",
+      "Unterstützte Spielprozesse stehen in der Auswahl. FPS-Messung bleibt für Fortnite."
+    ]
+  },
+  {
+    "id": "eigene-crosshairs",
+    "title": "Eigenes Crosshair erstellen",
+    "intro": "Baue dein Crosshair aus Linien, Mittelpunkt und Ring – mit Live-Vorschau.",
+    "steps": [
+      "Links „Crosshair Lab“ öffnen und „+ Eigenes Crosshair erstellen“ klicken.",
+      "Namen eingeben. Optional eine Vorlage anklicken (z. B. Klassisch, T-Form, Kreis + Punkt).",
+      "Linien: einzelne Seiten an/aus (Oben ausschalten = T-Form), Länge und Abstand zur Mitte einstellen, für ein X „Um 45° drehen“.",
+      "Mittelpunkt: Punkt an und Größe wählen. Ring: Ring an, Radius und Stil (voller Kreis oder vier Bögen).",
+      "Rechts siehst du die Vorschau vergrößert und in Originalgröße auf Spielhintergrund.",
+      "„Speichern“ oder direkt „Speichern und im Spiel verwenden“.",
+      "Farbe, Linienstärke, Größe und Deckkraft im Crosshair Lab einstellen – sie gelten für alle Crosshairs."
+    ],
+    "tips": [
+      "Teilen: „Teilen-Code kopieren“ und z. B. in Discord schicken. Freunde fügen den Code im Crosshair Lab unter „Code einfügen“ ein.",
+      "Eigene Crosshairs findest du im Filter „Eigene“. Bearbeiten oder löschen: auswählen und den passenden Knopf drücken.",
+      "Mit Konto werden deine eigenen Crosshairs im Konto gespeichert."
+    ]
+  },
+  {
+    "id": "bereinigung",
+    "title": "Bereinigung",
+    "intro": "Löscht alte, ungenutzte Temp-Dateien – sicher und nachvollziehbar.",
+    "steps": [
+      "Alle Programme schließen, die gerade arbeiten.",
+      "Links „Bereinigung“ öffnen, Auswahl prüfen.",
+      "„Speicher analysieren“ klicken. Es wird noch nichts gelöscht.",
+      "Optional „Kandidatenliste speichern …“ und durchsehen.",
+      "„Analysierte Dateien endgültig löschen“ und bestätigen."
+    ],
+    "tips": [
+      "Endgültig: kein Papierkorb, kein Rückgängig.",
+      "Downloads, Dokumente, Spielstände und Shadercaches werden nie angefasst."
+    ]
+  },
+  {
+    "id": "backups",
+    "title": "Backups & Verlauf",
+    "intro": "Jede Änderung von VYRA lässt sich rückgängig machen.",
+    "steps": [
+      "Links „Backups & Verlauf“ öffnen.",
+      "Die neueste offene Änderung steht oben: „Diese Änderung zurücknehmen“.",
+      "Danach kommt die nächste dran – immer von neu nach alt.",
+      "Einen ganzen Automatiklauf setzt du im Automatik-Ergebnis mit einem Klick zurück."
+    ],
+    "tips": [
+      "Nach dem Zurücknehmen von Registry-Werten einmal ab- und anmelden.",
+      "Gelöschte Dateien und deinstallierte Apps sind nicht wiederherstellbar."
+    ]
+  },
+  {
+    "id": "verknuepfung",
+    "title": "App-Icon und Desktop-Verknüpfung",
+    "intro": "VYRA hat ein eigenes Icon für Fenster, Taskleiste und Desktop.",
+    "steps": [
+      "Am einfachsten: VYRA installieren (Anleitung „Als PC-Anwendung installieren“) – dann gibt es Startmenü-Eintrag und Desktop-Symbol automatisch.",
+      "Ohne Installation: auf der Übersicht „Desktop-Verknüpfung anlegen“ klicken.",
+      "Optional: Rechtsklick auf die Verknüpfung → „An Taskleiste anheften“ bzw. „An Start anheften“."
+    ],
+    "tips": [
+      "Die Verknüpfung startet START-VYRA.cmd im VYRA-Ordner. Ordner nach dem Anlegen nicht verschieben – sonst einfach neu anlegen."
+    ]
+  },
+  {
+    "id": "konto",
+    "title": "Konto anlegen und Einstellungen speichern",
+    "intro": "Mit einem VYRA-Konto werden deine Einstellungen gespeichert und beim Anmelden geladen – auch für mehrere Spieler an einem PC.",
+    "steps": [
+      "Oben rechts auf „Gast · Anmelden“ klicken (oder links „Konto & Einstellungen“).",
+      "Namen eingeben, optional ein Passwort (mindestens 4 Zeichen) und eine Farbe wählen.",
+      "„Aktuelle Einstellungen übernehmen“ anlassen, wenn dein bisheriges Crosshair usw. ins Konto soll.",
+      "„Konto anlegen“ klicken – du bist sofort angemeldet.",
+      "Ab jetzt speichert VYRA automatisch: Crosshair und Darstellung, eigene Crosshairs, Favoriten, HUD, FPS-Booster, Automatik-Auswahl und deinen Plan.",
+      "Wechseln: „Konto wechseln“ – beim Start erscheint dann „Wer spielt?“. „Abmelden (Gast)“ wechselt zu den Gast-Einstellungen.",
+      "Auf einen anderen PC: „Konto exportieren …“ und dort unter Konto & Einstellungen „Konto importieren …“."
+    ],
+    "tips": [
+      "Konten liegen nur auf diesem PC, es gibt keinen Online-Server.",
+      "„Angemeldet bleiben“ meldet dich beim nächsten Start automatisch an.",
+      "Optimierungen, Backups und der Booster gelten für den ganzen PC, nicht pro Konto."
+    ]
+  },
+  {
+    "id": "systemcheck",
+    "title": "Systemcheck",
+    "intro": "Zeigt auf einen Blick, ob alle Teile von VYRA auf deinem PC funktionieren. Es wird nichts verändert.",
+    "steps": [
+      "Links unter SYSTEM »Systemcheck« öffnen.",
+      "Grün = in Ordnung, Gelb = optional oder Hinweis, Rot = funktioniert nicht.",
+      "Neben einem Problem steht ein Knopf mit der Lösung (zum Beispiel »WebView2 laden« oder »Bei Microsoft laden«).",
+      "»Bericht kopieren« legt das Ergebnis in die Zwischenablage, »Protokoll öffnen« zeigt technische Details."
+    ],
+    "tips": [
+      "Nach einer Installation (WebView2, Visual C++) einfach »Erneut prüfen« klicken – ein Neustart ist nicht nötig."
+    ]
+  },
+  {
+    "id": "probleme",
+    "title": "Wenn etwas nicht klappt",
+    "intro": "Die häufigsten Probleme und ihre Lösung.",
+    "steps": [
+      "Zuerst links »Systemcheck« öffnen: Er prüft Browser, VYRA Bot, Design und Messung und bietet passende Lösungen an.",
+      "App startet nicht: Das Startfenster zeigt den Fehler. Den Text aus %LOCALAPPDATA%\\TAKT\\Logs weitergeben.",
+      "„Paketdatei fehlt“: ZIP vollständig in einen neuen Ordner entpacken.",
+      "HUD erscheint nicht: Fortnite auf „Vollbild im Fenster“ stellen und VYRA geöffnet lassen.",
+      "FPS zeigen „—“: Anleitung „FPS-Messung freigeben“.",
+      "GPU-Werte fehlen: Nur NVIDIA-Grafikkarten mit aktuellem Treiber liefern diese Werte.",
+      "Optimierung zurücknehmen: „Backups & Verlauf“."
+    ],
+    "tips": [
+      "PRUEFEN.cmd testet die App auf deinem PC, ohne etwas zu ändern."
+    ]
+  },
+  {
+    "id": "designs",
+    "title": "Design Studio: Farben, Kontrast und Textgröße",
+    "intro": "47 App-Paletten, darunter 26 neue Designs; Browserlayout und Browserfarben bleiben separat einstellbar.",
+    "steps": [
+      "Links unter PERSÖNLICH »Design Studio« öffnen.",
+      "Oben eine Vorlage anklicken – zum Beispiel »VYRA Violett«, »Gaming Rot«, »Hell Klar« oder »Hoher Kontrast«. Das Design gilt sofort für die ganze App.",
+      "Unter »Selbst anpassen« eine Akzentfarbe antippen oder als #RRGGBB eingeben und »Farbe übernehmen« klicken.",
+      "Darstellung (Dunkel/Hell), Hintergrund, Kontrast und Ecken wählen. Alles wird sofort angewendet und gespeichert.",
+      "Bei kleiner Schrift: »Textgröße / Zoom« auf 110 %, 125 % oder 150 % stellen – vergrößert die ganze Oberfläche.",
+      "»Design exportieren« speichert dein Design als Datei, »Design importieren« lädt es auf einem anderen PC."
+    ],
+    "tips": [
+      "»Hoher Kontrast« ist die am besten lesbare Einstellung, besonders bei hellen Räumen oder kleinen Monitoren.",
+      "Das Design gehört zu deinem Windows-Benutzer und bleibt beim Wechsel zwischen VYRA-Konten gleich.",
+      "Unter dem Regler steht, wie gut Text, Nebentext und Akzente lesbar sind. VYRA korrigiert zu helle oder zu dunkle Farben automatisch."
+    ]
+  },
+  {
+    "id": "browser",
+    "title": "Gaming-Browser: Tabs, Messenger, GX-Kontrolle, Werbeblocker",
+    "intro": "Ein Gaming-Browser auf Basis von Microsoft Edge (WebView2) mit Seitenleiste, Messengern, RAM-/CPU-/Netzwerk-Limiter, Gaming-Ecke und starkem Werbe- und Trackerblocker.",
+    "steps": [
+      "Links »Webbrowser« anklicken: der VYRA Browser öffnet sich als eigenes Fenster mit Tabs oben in der Titelleiste (wie Chrome/Opera GX). Die Schnellwahl zeigt Suchfeld, Kacheln und den Zähler blockierter Werbung.",
+      "Seitenleiste links im Browser: Schnellwahl, GX-Kontrolle, Gaming-Ecke, Messenger (WhatsApp, Discord, Telegram, Instagram, Twitch, Spotify, YouTube Music), Lesezeichen, Verlauf, Downloads und Einstellungen.",
+      "Messenger öffnen sich daneben, während du im Tab weitersurfst. Einmal anmelden – die Anmeldung bleibt gespeichert.",
+      "GX-Kontrolle: RAM-, CPU- und Netzwerk-Limiter einschalten und den Regler stellen. Unter »Hot Tabs« siehst du, welche Tabs viel Speicher brauchen.",
+      "Werkzeuge oben rechts: Stern (Lesezeichen), »Blockiert: Zahl« (Seite freigeben), Screenshot, Video-Popout und »Seite mit VYRA Bot zusammenfassen«.",
+      "Privater Tab: Augen-Symbol neben »+« oder Strg+Umschalt+N. Verlauf, Cookies und Cache werden danach verworfen.",
+      "Einstellungen (Zahnrad unten in der Seitenleiste): Suchmaschine, Blocker-Listen, Cookie-Hinweise, Tracking-Schutz, eigene Filter, Messenger-Auswahl, Gaming-Pause.",
+      "Startbildschirm: Letzte Tabs mit Seiten-Icons anklicken und wieder öffnen. Mehr (…) > Von dieser Seite lernen wertet die öffentliche Seite mit weiteren Quellen aus.",
+      "In Einstellungen Website-Rechte prüfen oder zurücksetzen. Ja/Nein im Berechtigungsdialog merkt die Entscheidung; Abbrechen verweigert nur diesmal. Private Fenster bleiben getrennt."
+    ],
+    "tips": [
+      "Der Blocker nutzt EasyList, EasyPrivacy, EasyList Germany und eine große Domainliste. »Filterlisten aktualisieren« holt die neuesten Fassungen.",
+      "Funktioniert eine Seite nicht richtig, auf »Blockiert: …« klicken – die Seite wird freigegeben.",
+      "Videowerbung direkt bei YouTube lässt sich mit Filterlisten nicht zuverlässig entfernen.",
+      "Schließt du das Browser-Fenster, wird sein Arbeitsspeicher sofort freigegeben. Beim nächsten Öffnen kannst du die Sitzung wiederherstellen.",
+      "Twitch und YouTube sind im Stream-Modus von automatischer Pause/Schließen und Limitern ausgenommen. Der Player bestimmt verfügbare Qualitäten."
+    ]
+  },
+  {
+    "id": "nova",
+    "title": "VYRA KI – dein KI-Assistent",
+    "intro": "VYRA KI hilft beim Lernen, Programmieren, Schreiben, Recherchieren und bei allem rund um VYRA – mit einer Oberfläche wie bei ChatGPT: Chats links, Antworten in der Mitte, Eingabefeld unten. Modelle: VYRA KI (lokal, ohne Schlüssel), VYRA KI Mini, Claude, OpenAI und die Schnellhilfe.",
+    "steps": [
+      "Links »VYRA KI« anklicken: VYRA KI öffnet sich in einem eigenen Fenster. Oben links auf den Modellnamen klicken und das Modell wählen.",
+      "Beim ersten Mal »Jetzt einrichten« klicken: das lokale Modell (2,5 GB) wird einmalig geladen. Danach läuft VYRA KI ohne Konto und kostenlos auf deinem PC.",
+      "Frage eintippen, Enter sendet, Umschalt+Enter macht eine neue Zeile. Die Antwort erscheint Wort für Wort mit Überschriften, Listen, Tabellen und Code. Esc oder der Stopp-Knopf bricht ab.",
+      "»+« fügt Dateien hinzu (Text, Word, PDF, CSV, Code) – oder einfach Dateien ins Fenster ziehen.",
+      "»+« öffnet die Werkzeuge: Dateien hinzufügen, Websuche (Automatisch/Immer/Nie), Nachdenken und Arbeitsmodus. Aktive Werkzeuge erscheinen als kleine Pillen im Eingabefeld – ein Klick schaltet sie wieder aus.",
+      "»Nie suchen« oder das Mini-Modell machen die Antworten am schnellsten; »Nachdenken« ist gründlicher, aber langsamer.",
+      "Unter jeder Antwort: Kopieren, Neu generieren, Als Word-Datei speichern. Eigene Nachrichten lassen sich bearbeiten (Stift oder Pfeil-nach-oben-Taste).",
+      "Alle Chats werden links gespeichert: suchen, anheften, umbenennen, löschen. Strg+N startet einen neuen Chat.",
+      "Schnell-Overlay wie bei ChatGPT: Alt+Leertaste öffnet überall in Windows ein kleines VYRA-KI-Fenster. Esc schließt es, »Im Hub öffnen« übernimmt den Chat.",
+      "Im normalen Chat Programmier- und Änderungsaufträge beschreiben. Kein zusätzlicher Programmiermodus nötig.",
+      "Mikrofon öffnet die 3D-Kugel. Falls nötig Lokale Sprache einrichten wählen; danach sprechen und automatisch senden lassen.",
+      "Lerne Python mit SQLite recherchiert belegte Schritte. Internet-Lernmodule und erkannte Vorlieben sind in den KI-Einstellungen verwaltbar."
+    ],
+    "tips": [
+      "Zahnrad oben rechts: Modelle und API-Schlüssel, Grafikkarte, Antwortlänge (Kurz/Ausgewogen/Ausführlich), eigene Anweisungen und das Overlay-Tastenkürzel.",
+      "OpenAI und Claude rechnen pro Nutzung über dein eigenes Konto ab. Die Schlüssel werden verschlüsselt für deinen Windows-Benutzer gespeichert.",
+      "Auf deinen Auftrag kann die Werkstatt Quelländerungen vorschlagen. Vor Anwenden prüfen; Sicherung und Rückgängig sind vorgesehen. Keine neu trainierten Modellgewichte."
+    ]
+  },
+  {
+    "id": "vyra-ki",
+    "title": "VYRA KI – eigene KI ohne Schlüssel",
+    "intro": "VYRA KI ist die eigene KI von VYRA. Sie läuft komplett auf deinem PC – ohne API-Schlüssel, ohne Konto, kostenlos. Sie recherchiert im Internet, liest Dateien in Ordnern, die du freigibst, ordnet sie auf Wunsch und schreibt Dokumente.",
+    "steps": [
+      "Links »VYRA KI« öffnen; oben im Modellmenü »VYRA KI« wählen.",
+      "Einmalig »Modell herunterladen« (Qwen3 4B Instruct, 2,5 GB). Mit »Grafikkarte nutzen« kann das Modell auf einer geeigneten GPU schneller arbeiten.",
+      "Chat: Frage eintippen. Mit »Suche: Auto« bzw. »Immer« sucht VYRA KI im Netz (DuckDuckGo, Bing, Mojeek, Wikipedia), liest die passenden Seiten und nennt die Quellen mit Nummern.",
+      "Arbeitsmodus: unten den Schalter »Arbeitsmodus« anklicken und die Aufgabe beschreiben, z. B. »Recherchiere die besten Fortnite-Einstellungen für eine GTX 1050 Ti und schreibe mir einen Bericht«.",
+      "Ergebnis wählen: im Chat, als Word-Datei (.docx) oder als Textdatei (.md). Dateien landen unter Dokumente\\VYRA KI.",
+      "Eigene Dateien: »Ordner freigeben …« wählen. VYRA KI liest darin Text-, Word-, PDF-, CSV-, HTML- und Code-Dateien und nutzt sie für die Aufgabe.",
+      "Ordnen: »Dateien ordnen« anhaken. VYRA KI schlägt Unterordner vor; erst nach »Ausführen« wird verschoben. Nichts wird gelöscht, »Rückgängig« stellt alles wieder her.",
+      "Während der Arbeit siehst du jeden Schritt (Planen, Suchen, Lesen, Schreiben). »Stopp« bricht ab."
+    ],
+    "tips": [
+      "VYRA KI ist ein kleines Modell auf deinem PC. Sie ist langsamer und macht mehr Fehler als große Online-KIs – prüfe wichtige Angaben in den Quellen.",
+      "Rechenaufgaben wie »12,5 * 8 + 3« rechnet VYRA exakt selbst aus, ohne KI.",
+      "Mit OpenAI- oder Claude-Schlüssel nutzt derselbe Arbeitsmodus das stärkere Online-Modell.",
+      "Systemordner, ganze Laufwerke und der komplette Benutzerordner können nicht freigegeben werden."
+    ]
+  },
+  {
+    "id": "ki-programmieren-411",
+    "title": "Im Chat programmieren und ZIP bearbeiten",
+    "intro": "Direkt im normalen Chat Aufgaben beschreiben.",
+    "steps": [
+      "Zum Beispiel: Baue mir eine Aufgaben-App mit lokaler Speicherung. Ein extra Modus ist nicht erforderlich.",
+      "Ein ZIP anhaengen und den Aenderungswunsch schreiben oder ueber Plus ein ZIP-Projekt oeffnen.",
+      "Unter der Projektkarte starten, den Ordner oeffnen oder ein ZIP exportieren. Native Plattformprojekte brauchen ihr SDK fuer einen echten Build."
+    ],
+    "tips": [
+      "Automatische Pruefungen haben Grenzen. Ein fehlgeschlagener Test wird nicht als bestanden ausgegeben."
+    ]
+  },
+  {
+    "id": "ki-erinnern-411",
+    "title": "Gedächtnis und Sprachmodus",
+    "intro": "Alte Aufgaben wiederfinden und mit der Kugel sprechen.",
+    "steps": [
+      "Merke dir: ... speichert eine ausdrueckliche Notiz. Passende alte Chats werden automatisch gesucht.",
+      "Unter Einstellungen Gedächtnis ausschalten oder Notizen loeschen. Im Chatmenue einen Chat ausschliessen.",
+      "Neben dem Plus den Mikrofonknopf oeffnen. Ein Windows-Sprachpaket und Mikrofonfreigabe sind erforderlich. Das Schliessen beendet die Erkennung."
+    ],
+    "tips": [
+      "Online-Modelle erhalten die fuer den Auftrag ausgewaehlten Erinnerungen."
+    ]
+  },
+  {
+    "id": "browser-streams-411",
+    "title": "Twitch und YouTube ohne Browser-Drosselung",
+    "intro": "Streams wach halten und verfuegbare Qualitaeten im Player waehlen.",
+    "steps": [
+      "YouTube oder Twitch oeffnen und einen Stream starten. Der Stream-Modus ist standardmaessig aktiv.",
+      "In der Browser-Seitenleiste Streams oeffnen und das Player-Qualitaetsmenue aufrufen.",
+      "Die gewuenschte angebotene Qualitaet im Player waehlen. Die Diagnose zeigt aktuelle Aufloesung und Codec-Unterstuetzung.",
+      "Bei Playerproblemen die Seite ueber das Schild freigeben und neu laden. WebView2 und Grafiktreiber aktuell halten."
+    ],
+    "tips": [
+      "Eine nicht vom Stream angebotene Qualitaetsstufe kann die App nicht ergaenzen."
+    ]
+  },
+  {
+    "id": "ki-training-411",
+    "title": "Buchhaltungs-Starter und Fine-Tuning",
+    "intro": "Ein funktionierendes Journal-Beispiel und Training vorbereiten.",
+    "steps": [
+      "Plus > Buchhaltungs-Starter erstellt ein Python/SQLite-Projekt mit Tests und Storno.",
+      "Im normalen Chat den naechsten Aenderungswunsch beschreiben. Vor echtem Einsatz fachlich und technisch pruefen.",
+      "FineTuning/ANLEITUNG.md beschreibt gepruefte Beispiele, Training, Vergleich und optionales LoRA-Laden."
+    ],
+    "tips": [
+      "Kein neu trainiertes Modell und keine Zusicherung steuerlicher Konformitaet."
+    ]
+  },
+  {
+    "id": "internetlernen",
+    "title": "Internet lernen und anwenden",
+    "intro": "Wiederverwendbare Anleitungen mit gelesenen Quellen; kein Training neuer Modellgewichte.",
+    "steps": [
+      "Websuche und Gedächtnis einschalten. Im Chat Lerne Python mit SQLite schreiben.",
+      "Oder Lerne SVG-Grafiken und erstelle mir ein Bild von einem Fuchs: VYRA lernt und führt den Auftrag aus.",
+      "KI-Einstellungen > Internet-Lernen > Lernbibliothek: Quellen und Schritte ansehen, neu recherchieren oder vergessen."
+    ],
+    "tips": [
+      "Mindestens zwei lesbare Websites erforderlich. Nicht jeder Lernversuch ist erfolgreich.",
+      "Aktuelle Module werden bis zu 30 Tage wiederverwendet. Prüfvorschläge wurden noch nicht automatisch ausgeführt."
+    ]
+  },
+  {
+    "id": "sprache",
+    "title": "Mit der 3D-Kugel sprechen",
+    "intro": "Gesprochene Fragen werden erkannt und automatisch an VYRA gesendet.",
+    "steps": [
+      "Mikrofon neben dem Plusknopf öffnen und Frage sprechen.",
+      "Bei fehlender Erkennung Lokale Sprache einrichten (ca. 160 MB) wählen; Download abwarten und Zuhoeren klicken.",
+      "Bei Problemen Mikrofonrechte, Standard-Audiogerät und Diagnose im Sprachfenster prüfen."
+    ],
+    "tips": [
+      "Erkennung erfolgt lokal; die gesendete Frage nutzt deinen gewählten KI-Anbieter.",
+      "Windows-Diktat Win+H bleibt eine separate Alternative mit manuellem Senden."
+    ]
+  },
+  {
+    "id": "bilder",
+    "title": "Bilder generieren",
+    "intro": "Echte SVG-Zeichnungen oder PNG-Bilder mit angeschlossenem Bilddienst.",
+    "steps": [
+      "Im normalen Chat beispielsweise Erstelle ein SVG-Bild von einem Fuchs schreiben.",
+      "Für Fotos/PNG eigenen OpenAI-API-Schlüssel in den KI-Einstellungen hinterlegen und Bilder-Modell wählen.",
+      "Ergebnisdatei unter der Antwort öffnen und speichern."
+    ],
+    "tips": [
+      "Bilddienst-Aufträge können API-Kosten verursachen. Kein Schlüssel ist enthalten.",
+      "Ohne Bilddienst erzeugt VYRA Vektorbilder; keine Fotos vortäuschen."
+    ]
+  },
+  {
+    "id": "zip",
+    "title": "ZIP-Projekte öffnen und bearbeiten",
+    "intro": "Originaldateien und Assets erhalten, isoliert bearbeiten und wieder exportieren.",
+    "steps": [
+      "Plusmenü > ZIP-Projekt öffnen und Archiv auswählen. Falls nötig Passwort eingeben.",
+      "Im normalen Chat beschreiben, welche Text-/Code-Dateien sich ändern sollen.",
+      "Projektkarte > ZIP exportieren und neue Ausgabedatei wählen."
+    ],
+    "tips": [
+      "Bis 8 GiB entpackt, 2 GiB je Datei und 50.000 Einträge. Kein unbegrenzter Import.",
+      "Binärdateien bleiben erhalten; sie werden nicht durch Modell-Textauszüge ersetzt."
+    ]
+  }
+]

@@ -43,8 +43,8 @@ public enum FS {
         let tmp = p + "." + newId() + ".tmp"
         do {
             try data.write(to: URL(fileURLWithPath: tmp))
-            if exists(p) { _ = try fm.replaceItemAt(URL(fileURLWithPath: p), withItemAt: URL(fileURLWithPath: tmp)) }
-            else { try fm.moveItem(atPath: tmp, toPath: p) }
+            // rename(2) ersetzt die Zieldatei atomar (wie File.Replace unter Windows).
+            if rename(tmp, p) != 0 { throw VyraError("Datei konnte nicht gespeichert werden: " + fileName(p) + " (" + String(cString: strerror(errno)) + ")", .io) }
         } catch {
             delete(tmp)
             throw error

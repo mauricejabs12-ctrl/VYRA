@@ -46,7 +46,7 @@ private let llamaBackendOnce: Void = {
 /// Das lokale VYRA-Modell direkt in der App: llama.cpp b7380 mit Metal (Apple-Grafik), ohne Server-Prozess.
 /// Ersetzt `AiEngine` (llama-server.exe) und uebernimmt dessen Regeln: Pruefsumme, Kontextplanung mit Rueckfall,
 /// Thinking aus (/no_think), Sampling-Werte, Grammatik fuer JSON, Prompt-Zwischenspeicher, Streaming und Abbruch.
-public final class LlamaEngine: LocalEngine {
+public final class LlamaEngine: KiModelEngine {
     public let model: ModelInfo
     public let modelPath: String
     let paths: VyraPaths
@@ -93,6 +93,12 @@ public final class LlamaEngine: LocalEngine {
     public var modelInstalled: Bool { FS.isFile(modelPath) && FS.size(modelPath) == model.bytes }
     public var running: Bool { stateLock.lock(); defer { stateLock.unlock() }; return lctx != nil }
     public var downloading: Bool { FS.exists(modelPath + ".download") }
+    /// Wird gerade geladen (Pruefen, Speicher, Laden auf die Grafikeinheit).
+    public var starting: Bool { stateLock.lock(); defer { stateLock.unlock() }; return loading != nil && lctx == nil }
+    public var processorLabel: String? {
+        guard running, let a = active else { return nil }
+        return a.gpuLayers <= 0 ? "Prozessor" : a.gpuLayers >= model.layers ? "Grafikeinheit" : "GPU + CPU"
+    }
     var verifiedMarker: String { modelPath + ".ok" }
 
     func say(_ s: String) { statusText = s; onStatus?(s) }
