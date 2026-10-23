@@ -1,0 +1,16 @@
+{
+  "model": "Qwen3-8B-Q4_K_M.gguf",
+  "name": "VYRA Pro",
+  "url": "https://huggingface.co/Qwen/Qwen3-8B-GGUF/resolve/7c41481f57cb95916b40956ab2f0b139b296d974/Qwen3-8B-Q4_K_M.gguf",
+  "sha256": "d98cdcbd03e17ce47681435b5150e34c1417f50b5c0019dd560e4882c5745785",
+  "bytes": 5027783488,
+  "thinking": true,
+  "ctx": 8192,
+  "license": "Apache-2.0",
+  "source": "https://huggingface.co/Qwen/Qwen3-8B-GGUF (Modell: Qwen/Qwen3-8B)",
+  "runtime": "llama.cpp b7380 (CPU + Vulkan)",
+  "layers": 36,
+  "kv_bytes_per_token": 147456,
+  "tier": "pro",
+  "max_ctx": 32768
+}
