@@ -183,8 +183,10 @@ public final class ZipWriter {
     static func le64(_ v: UInt64) -> [UInt8] { le32(UInt32(v & 0xFFFFFFFF)) + le32(UInt32(v >> 32)) }
     static func dos(_ d: Date) -> (UInt16, UInt16) {
         let c = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second], from: d)
-        let date = UInt16(max(0, (c.year ?? 1980) - 1980) << 9 | (c.month ?? 1) << 5 | (c.day ?? 1))
-        let time = UInt16((c.hour ?? 0) << 11 | (c.minute ?? 0) << 5 | (c.second ?? 0) / 2)
+        let y: Int = max(0, (c.year ?? 1980) - 1980), mo: Int = c.month ?? 1, dd: Int = c.day ?? 1
+        let hh: Int = c.hour ?? 0, mi: Int = c.minute ?? 0, ss: Int = c.second ?? 0
+        let date = UInt16((y << 9) | (mo << 5) | dd)
+        let time = UInt16((hh << 11) | (mi << 5) | (ss / 2))
         return (time, date)
     }
     public func add(_ name0: String, _ data: Data, compress: Bool = true, modified: Date = Date()) throws {

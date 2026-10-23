@@ -413,7 +413,7 @@ public final class Researcher {
             if let p = all.filter({ $0.source == src }).max(by: { $0.score < $1.score }) { chosen.append(p); used += p.text.len + 20 }
         }
         let srcSet = Set(srcs)
-        for p in all.filter({ srcSet.contains($0.source) && !chosen.contains(where: { c in c === $0 }) }).sorted(by: { $0.score > $1.score }) {
+        for p in all.filter({ q in srcSet.contains(q.source) && !chosen.contains(where: { c in c === q }) }).sorted(by: { $0.score > $1.score }) {
             if p.score <= 0.05 { break }
             if chosen.filter({ $0.source == p.source }).count >= 4 { continue }
             if used + p.text.len > budget { continue }

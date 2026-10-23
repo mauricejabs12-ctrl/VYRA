@@ -142,13 +142,18 @@ public enum SkillRules {
 }
 
 /// Liest Lernquellen vorsichtig: nur oeffentliche Adressen (DNS-Pruefung), jede Weiterleitung einzeln geprueft, max. 1,5 MB.
-public final class LearningWebReader: NSObject, URLSessionTaskDelegate {
+public final class LearningWebReader: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
     public static let shared = LearningWebReader()
-    lazy var session: URLSession = {
+    private static let redirectBlocker = RedirectBlocker()
+    /// Weiterleitungen werden nie automatisch befolgt; `read` prueft jedes Ziel einzeln.
+    let session: URLSession = {
         let c = URLSessionConfiguration.ephemeral
         c.httpCookieStorage = nil; c.urlCache = nil; c.timeoutIntervalForRequest = 10
-        return URLSession(configuration: c, delegate: self, delegateQueue: nil)
+        return URLSession(configuration: c, delegate: LearningWebReader.redirectBlocker, delegateQueue: nil)
     }()
+    final class RedirectBlocker: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+        func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) { completionHandler(nil) }
+    }
     public func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) { completionHandler(nil) }
     public func read(_ address: String, _ max: Int, _ token: CancelToken) async throws -> PageText {
         let page = PageText(); page.url = address

@@ -123,7 +123,11 @@ public enum DocWriter {
             case "hr": b += "<hr>"
             case "table":
                 b += "<table>"
-                for (i, r) in k.rows.enumerated() { b += "<tr>" + r.map { i == 0 ? "<th>" + x($0) + "</th>" : "<td>" + x($0) + "</td>" }.joined() + "</tr>" }
+                for (i, r) in k.rows.enumerated() {
+                    let tag = i == 0 ? "th" : "td"
+                    let cells: [String] = r.map { (v: String) -> String in "<" + tag + ">" + x(v) + "</" + tag + ">" }
+                    b += "<tr>" + cells.joined() + "</tr>"
+                }
                 b += "</table>"
             default: b += "<p>" + inl(k.text) + "</p>"
             }
