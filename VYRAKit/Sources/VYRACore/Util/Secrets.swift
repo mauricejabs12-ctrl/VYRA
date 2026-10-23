@@ -66,7 +66,7 @@ public enum SecretStore {
     public static func protect(_ plain: String) -> String? {
         #if canImport(CryptoKit)
         guard let k = dataKey() else { return nil }
-        guard let box = try? AES.GCM.seal(Data(plain.utf8), using: SymmetricKey(data: k)), let c = box.combined else { return nil }
+        guard let box = try? CryptoKit.AES.GCM.seal(Data(plain.utf8), using: SymmetricKey(data: k)), let c = box.combined else { return nil }
         return "v1:" + c.base64EncodedString()
         #else
         // Nur fuer die Linux-Tests des Kerns (kein CryptoKit): keine echte Verschluesselung.
@@ -76,7 +76,7 @@ public enum SecretStore {
     public static func unprotect(_ cipher: String) -> String? {
         #if canImport(CryptoKit)
         guard cipher.hasPrefix("v1:"), let k = dataKey(), let c = Data(base64Encoded: String(cipher.dropFirst(3))),
-              let box = try? AES.GCM.SealedBox(combined: c), let p = try? AES.GCM.open(box, using: SymmetricKey(data: k)) else { return nil }
+              let box = try? CryptoKit.AES.GCM.SealedBox(combined: c), let p = try? CryptoKit.AES.GCM.open(box, using: SymmetricKey(data: k)) else { return nil }
         return String(decoding: p, as: UTF8.self)
         #else
         guard cipher.hasPrefix("t0:"), let d = Data(base64Encoded: String(cipher.dropFirst(3))) else { return nil }
