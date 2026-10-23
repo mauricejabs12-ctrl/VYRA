@@ -1,3 +1,0 @@
-/Users/runner/work/VYRA/VYRA/VYRAKit/Sources/VYRACore/Util/Secrets.swift:69:34: error: type 'AES' has no member 'GCM'
-/Users/runner/work/VYRA/VYRA/VYRAKit/Sources/VYRACore/Util/Secrets.swift:79:34: error: type 'AES' has no member 'GCM'
-/Users/runner/work/VYRA/VYRA/VYRAKit/Sources/VYRACore/Util/Secrets.swift:79:79: error: type 'AES' has no member 'GCM'

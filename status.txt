@@ -1,1 +1,6 @@
-run=2 sha=e6201b9b53ef13caf432df9a4e93c965d5dfcb44 status=failure
+run=3 sha=727e31a604c71ffe4a727795ceeb64f87ebc733d status=success
+total 14048
+drwxr-xr-x   4 runner  staff      128 Oct 23 06:26 .
+drwxr-xr-x  13 runner  staff      416 Oct 23 06:26 ..
+-rw-r--r--   1 runner  staff  3593442 Oct 23 06:26 VYRA-KI-ohne-Speichererweiterung.ipa
+-rw-r--r--   1 runner  staff  3593512 Oct 23 06:26 VYRA-KI.ipa
