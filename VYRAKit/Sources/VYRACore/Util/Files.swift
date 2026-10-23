@@ -97,8 +97,8 @@ public enum FS {
     }
 }
 
-/// Ablageorte der App. Unter iOS: Daten in »Application Support/VYRA«, Ergebnisse in »Dokumente/VYRA KI«
-/// (in der Dateien-App unter »Auf meinem iPhone › VYRA KI« sichtbar).
+/// Ablageorte der App. Unter iOS: Daten in »Application Support/VYRA«, Ergebnisse im Dokumente-Ordner der App
+/// (der Dokumente-Ordner der App, in der Dateien-App unter »Auf meinem iPhone › VYRA KI« sichtbar).
 public final class VyraPaths {
     public let dataRoot: String
     public let documents: String
@@ -109,7 +109,8 @@ public final class VyraPaths {
     public static func standard() -> VyraPaths {
         let fm = FileManager.default
         let support = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("VYRA").path
-        let docs = fm.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("VYRA KI").path
+        // Der Dokumente-Ordner der App erscheint in der Dateien-App als »Auf meinem iPhone › VYRA KI«.
+        let docs = fm.urls(for: .documentDirectory, in: .userDomainMask).first!.path
         return VyraPaths(dataRoot: support, documents: docs)
     }
     /// Wie `data` unter Windows (%LOCALAPPDATA%\VYRA).

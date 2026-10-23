@@ -1,0 +1,73 @@
+name: iPhone-App bauen
+
+on:
+  push:
+    branches: [ios-app]
+    paths: ["App/**", "VYRAKit/**", "scripts/package-ipa.sh", ".github/workflows/ios.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Werkzeuge
+        run: |
+          xcodebuild -version
+          brew install xcodegen
+
+      - name: Xcode-Projekt erzeugen
+        run: cd App && xcodegen generate
+
+      - name: App bauen (iOS, Release, ohne Signatur)
+        run: |
+          set -o pipefail
+          xcodebuild -project App/VYRAKI.xcodeproj -scheme VYRAKI -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' -derivedDataPath build \
+            -skipPackagePluginValidation \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build 2>&1 | tee build.log | grep -E "error:|warning: .*(deprecated|unavailable)|BUILD (SUCCEEDED|FAILED)|Compiling|Linking" | grep -v "^$" | tail -400
+
+      - name: IPA packen
+        run: scripts/package-ipa.sh
+
+      - name: Kern auf macOS bauen
+        run: cd VYRAKit && swift build 2>&1 | tail -40
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VYRA-KI-iPhone
+          path: dist/*.ipa
+
+      - name: Download-Seite aktualisieren (Release »ios-latest«)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete ios-latest --yes --cleanup-tag || true
+          gh release create ios-latest dist/*.ipa --prerelease --target "$GITHUB_SHA" \
+            --title "VYRA KI für iPhone – Testversion (Build ${GITHUB_RUN_NUMBER})" \
+            --notes "Unsignierte IPA zum Installieren mit Sideloadly (kostenlose Apple-ID, 7 Tage gültig). Anleitung: docs/INSTALLATION-iPhone.md. Commit ${GITHUB_SHA}."
+
+      - name: Build-Protokoll sichern (Branch ios-ci-logs)
+        if: always()
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          LOGDIR="$RUNNER_TEMP/logs"
+          git clone --depth 1 --branch ios-ci-logs "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}" "$LOGDIR" 2>/dev/null || {
+            mkdir -p "$LOGDIR" && cd "$LOGDIR" && git init -q && git checkout -q -b ios-ci-logs && git remote add origin "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}"; }
+          cd "$LOGDIR"
+          cp "$GITHUB_WORKSPACE/build.log" build.log 2>/dev/null || echo "kein build.log" > build.log
+          grep -E "error:" build.log | sort -u > errors.txt || true
+          echo "run=${GITHUB_RUN_NUMBER} sha=${GITHUB_SHA} status=${{ job.status }}" > status.txt
+          ls -la "$GITHUB_WORKSPACE/dist" >> status.txt 2>/dev/null || true
+          git add -A && git -c user.name=vyra-ci -c user.email=ci@users.noreply.github.com commit -qm "Build ${GITHUB_RUN_NUMBER}" && git push -q origin ios-ci-logs
