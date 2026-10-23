@@ -6,7 +6,7 @@ import VYRALlama
 struct VYRAKIApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("VYRA KI " + (ModelInfo.catalog().first?.name ?? "")).preferredColorScheme(.dark)
+            Text("VYRA KI " + ((try? ModelInfo.catalog())?.first?.name ?? "")).preferredColorScheme(.dark)
         }
     }
 }
