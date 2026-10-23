@@ -64,6 +64,8 @@ public final class LlamaEngine: LocalEngine {
     public private(set) var lastTokensPerSecond: Double = 0
     public private(set) var lastFinish = ""
     public private(set) var lastPromptTokens = 0
+    /// Wie viele Prompt-Token beim letzten Aufruf aus dem Zwischenspeicher wiederverwendet wurden.
+    public private(set) var lastReusedTokens = 0
     public private(set) var statusText = ""
     public var onStatus: ((String) -> Void)?
 
@@ -456,6 +458,7 @@ public final class LlamaEngine: LocalEngine {
             if !llama_memory_seq_rm(mem, 0, llama_pos(common), -1) { llama_memory_clear(mem, true); common = 0 }
             cached = Array(cached.prefix(common))
         }
+        lastReusedTokens = common
         var pos = common
         let nBatch = 512
         while pos < tokens.count {
